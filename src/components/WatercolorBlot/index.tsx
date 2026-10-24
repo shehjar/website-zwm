@@ -45,10 +45,10 @@ export interface WatercolorBlotProps {
 
 /** Real watercolor blot assets — never redraw or substitute. */
 export const WATERCOLOR_BLOT_SOURCES: Record<WatercolorBlotVariant, string> = {
-  splash: "/blot3.svg",
+  splash: "/blot3.webp",
 
-  wash: "/blot2.svg",
-  drift: "/blot1.svg"
+  wash: "/blot2.webp",
+  drift: "/blot1.webp"
 
 };
 

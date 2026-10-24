@@ -39,17 +39,17 @@ export interface BotanicalDecorationProps {
 
 /** Real transparent watercolor assets — never redraw or substitute. */
 export const BOTANICAL_SOURCES: Record<BotanicalVariant, string> = {
-  eucalyptus: "/leaves3.svg",
+  eucalyptus: "/leaves3.webp",
 
-  branch: "/leaves2.svg",
+  branch: "/leaves2.webp",
 
-  corner: "/Leaves1.svg",
+  corner: "/Leaves1.webp",
 
-  sprig: "/leaves6.svg",
+  sprig: "/leaves6.webp",
 
-  twin: "/leaves5.svg",
+  twin: "/leaves5.webp",
 
-  garland: "/leaves4.svg"
+  garland: "/leaves4.webp"
 
 };
 
