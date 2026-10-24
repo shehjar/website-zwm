@@ -36,3 +36,21 @@ h5,
 h6 {
   font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
 }
+
+/* Legal pages (Impressum / Datenschutz / AGB) */
+.legal-content h2 {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.legal-content a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.legal-content section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
