@@ -3,8 +3,7 @@ import {
   MessageCircleHeartIcon,
   CalendarHeartIcon,
   PartyPopperIcon,
-  TruckIcon,
-  DownloadIcon
+  TruckIcon
 } from 'lucide-react';
 import { SiteHeader } from '@/components/SiteHeader';
 import { SiteFooter } from '@/components/SiteFooter';
@@ -85,19 +84,19 @@ const DRINKS = [
   {
     title: 'Aperol Spritz',
     tag: 'Klassiker',
-    imageSrc: 'https://images.pexels.com/photos/27668706/pexels-photo-27668706.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    imageSrc: '/images/aperol-spritz.jpg',
     ingredients: ING('Aperol', 'Prosecco', 'Soda', 'Orange')
   },
   {
     title: 'Tropical Spritz',
     tag: 'Fruchtig',
-    imageSrc: 'https://images.pexels.com/photos/3461204/pexels-photo-3461204.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    imageSrc: '/images/tropical-spritz.jpg',
     ingredients: ING('Aperol', 'Prosecco', 'Soda', 'Mangonektar', 'Mango')
   },
   {
     title: 'Pearfect Spritz',
     tag: 'Würzig',
-    imageSrc: 'https://images.pexels.com/photos/11912752/pexels-photo-11912752.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=900&h=1200&crop=focalpoint&fp-x=0.72&fp-y=0.42',
+    imageSrc: '/images/pearfect-spritz.jpg',
     ingredients: ING('Aperol', 'Prosecco', 'Soda', 'Birnensaft', 'Zimt', 'Birne')
   }
 ];
@@ -167,7 +166,10 @@ const FAQ_ITEMS: FaqItem[] = [
   }
 ];
 
-// Platzhalter-Stimmen – bitte später durch echte Gästestimmen ersetzen.
+// Platzhalter-Stimmen – NICHT veröffentlichen (erfundene Bewertungen sind
+// wettbewerbswidrig, UWG). SHOW_TESTIMONIALS erst auf true setzen, wenn echte
+// Gästestimmen vorliegen.
+const SHOW_TESTIMONIALS = false;
 const TESTIMONIALS: Testimonial[] = [
   {
     quote:
@@ -403,7 +405,7 @@ export default function App() {
           </div>
         </section>
 
-        <TestimonialSection items={TESTIMONIALS} />
+        {SHOW_TESTIMONIALS && <TestimonialSection items={TESTIMONIALS} />}
 
         <FaqSection items={FAQ_ITEMS} />
 
