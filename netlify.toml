@@ -1,0 +1,12 @@
+# Build configuration for Netlify (config-as-code).
+# Mirrors the settings currently configured in the Netlify UI for
+# zumwohlmobil.de — do not let the two drift apart.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# SPA fallback is handled by public/_redirects (copied into dist/).
