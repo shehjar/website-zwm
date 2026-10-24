@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Bebas+Neue&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+  --background: #FAF8F4;
+  --surface: #FFFFFF;
+  --card: #CBD9CD;
+  --wash: #E7EDE5;
+  --text: #5F7363;
+  --muted-text: #8A9A8C;
+  --primary: #5F7363;
+  --primary-foreground: #FFFFFF;
+  --border: #5F7363;
+  --accent: #E67A3B;
+  --accent-foreground: #FFFFFF;
+  --shadow-sm: 0 1px 2px rgba(31, 41, 24, 0.04);
+  --shadow-md: 0 2px 8px rgba(31, 41, 24, 0.06);
+  /* Single dial for background decoration strength (0-1); PageBackdrop multiplies every piece by this */
+  --decoration-strength: 1;
+}
+
+body {
+  font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+}
