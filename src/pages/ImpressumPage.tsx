@@ -1,9 +1,12 @@
 import { LegalPage, PlaceholderNotice } from './LegalPage';
 
 /**
- * PLACEHOLDER Impressum.
- * Replace the TODO fields with the real business details before launch.
- * Pflichtangaben für eine deutsche Geschäftswebsite (§ 5 DDG, § 18 MStV).
+ * Impressum — TEILENTWURF.
+ * Identitätsdaten übernommen aus der finalen Datenschutzerklärung
+ * (Inhaber-Angabe, 25.10.2026): Claire Turi ist alleinige Betreiberin.
+ * Offen bleibt: USt-IdNr./Kleinunternehmerregelung. Sobald der finale
+ * eRecht24-Impressumstext vorliegt, diese Seite 1:1 ersetzen und die
+ * PlaceholderNotice entfernen.
  */
 export function ImpressumPage() {
   return (
@@ -15,28 +18,32 @@ export function ImpressumPage() {
         <p>
           Zum Wohl Mobil
           <br />
-          Claire [Nachname TODO] &amp; Haider [Nachname TODO]
+          Claire Turi
           <br />
-          [Straße und Hausnummer TODO]
+          Helenenstraße 38
           <br />
-          [PLZ und Ort TODO]
+          90419 Nürnberg
         </p>
       </section>
 
       <section>
         <h2>Kontakt</h2>
         <p>
+          Telefon: 01774471833
+          <br />
           E-Mail:{' '}
           <a href="mailto:zumwohlmobil@gmail.com">zumwohlmobil@gmail.com</a>
-          <br />
-          Telefon: [Telefonnummer TODO – empfohlen]
         </p>
       </section>
 
       <section>
         <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
         <p>
-          [Vor- und Nachname sowie Anschrift der verantwortlichen Person TODO]
+          Claire Turi
+          <br />
+          Helenenstraße 38
+          <br />
+          90419 Nürnberg
         </p>
       </section>
 

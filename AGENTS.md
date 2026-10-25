@@ -42,9 +42,16 @@ rental business ("Zum Wohl Mobil", Claire & Haider).
 
 - `SHOW_TESTIMONIALS` in `src/App.tsx` stays `false` until the owner supplies
   real guest quotes. Invented reviews are a legal risk (UWG).
-- Legal pages are **placeholders**. Swap in final texts only when the owner
-  provides them (1:1 into the existing section structure) and remove
-  `PlaceholderNotice` from those pages afterwards.
+- Legal pages status (since 2026-10-25): **Datenschutzerklärung is LIVE**
+  (final eRecht24 text, owner-provided, published with corrections: Netlify
+  clause instead of Webflow, Kontaktformular/FormSubmit section added,
+  analytics teaser removed, Google-Fonts section added). **Impressum =
+  partial draft** (identity data filled from the Datenschutz; USt-IdNr still
+  TODO; awaits final eRecht24 text). **AGB = placeholder**. Swap remaining
+  texts 1:1 when the owner provides them and remove `PlaceholderNotice` from
+  each page that becomes final.
+- When self-hosting the fonts (backlog), DELETE the Google-Fonts section
+  (section 5) in `src/pages/DatenschutzPage.tsx` in the same change.
 - No new third-party CDNs/scripts (fonts, analytics, embeds, hotlinked images)
   without also updating `src/pages/DatenschutzPage.tsx`. Self-host instead
   where possible.
@@ -87,4 +94,5 @@ rental business ("Zum Wohl Mobil", Claire & Haider).
 - SEO: robots.txt, sitemap.xml, Google Search Console, LocalBusiness JSON-LD.
 - Cookie-less analytics (Plausible/Umami) + privacy-policy line.
 - Perf polish: width/height attrs on images (CLS), hero preload (LCP).
-- Content: final legal texts; real testimonials (then flip the flag).
+- Content: final eRecht24 Impressum + AGB texts (Datenschutz already live);
+  real testimonials (then flip the flag).
