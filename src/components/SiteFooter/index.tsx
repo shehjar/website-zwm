@@ -37,7 +37,7 @@ export function SiteFooter({
         draggable={false}
         loading="lazy"
         aria-hidden="true"
-        className="pointer-events-none absolute bottom-full right-[-4%] hidden w-[340px] max-w-[38vw] select-none md:block"
+        className="pointer-events-none absolute bottom-full right-0 w-[150px] max-w-[45vw] select-none sm:w-[240px] md:w-[340px]"
         style={{ opacity: 0.88, transform: 'rotate(180deg)' }}
       />
       <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-3 px-5 py-4 text-center sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-2 sm:px-8 md:text-left">

@@ -28,6 +28,13 @@ body {
   font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
 }
 
+/* Safety net: decorations may bleed off edges visually, but the page must
+   never grow a horizontal scroll area / white overflow strip. */
+html,
+body {
+  overflow-x: clip;
+}
+
 h1,
 h2,
 h3,
