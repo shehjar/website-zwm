@@ -35,6 +35,11 @@ rental business ("Zum Wohl Mobil", Claire & Haider).
   except where existing components already do (PillButton).
 - Components: small, single-purpose, JSDoc on props; `twMerge` for class
   merging; lucide-react for icons.
+- Responsive rule: interactive elements must wrap or shrink at narrow
+  viewports. No `whitespace-nowrap` on user-facing long copy; fixed heights
+  only as `min-h-*` plus vertical padding; spot-check new UI at ~360px width.
+  The global `overflow-x: clip` guard clips overflow instead of scrolling —
+  over-wide elements are silently cut off, so width-safety must be designed in.
 - Commits: imperative subject, conventional prefix (`feat:`, `fix:`, `chore:`,
   `perf:`), body explains why. One logical change per commit.
 

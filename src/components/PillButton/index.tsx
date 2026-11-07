@@ -27,9 +27,9 @@ Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof BaseProps> & {
 export type PillButtonProps = ButtonProps | AnchorProps;
 
 const sizeClasses: Record<PillButtonSize, string> = {
-  sm: 'h-9 px-5 text-xs gap-2',
-  md: 'h-11 px-7 text-sm gap-2.5',
-  lg: 'h-14 px-9 text-base gap-3'
+  sm: 'min-h-9 px-5 py-2 text-xs gap-2',
+  md: 'min-h-11 px-7 py-2.5 text-sm gap-2.5',
+  lg: 'min-h-14 px-9 py-3 text-base gap-3'
 };
 
 const iconSizes: Record<PillButtonSize, number> = {
@@ -52,7 +52,7 @@ export function PillButton(props: PillButtonProps) {
   const iconSize = iconSizes[size];
 
   const classes = twMerge(
-    'group inline-flex select-none items-center justify-center whitespace-nowrap rounded-full',
+    'group inline-flex max-w-full select-none items-center justify-center rounded-full text-center',
     'bg-[#4F6B58] font-semibold uppercase tracking-[0.12em] text-white shadow-sm',
     'transition-colors duration-200 hover:bg-[#3E5646] active:bg-[#33473A]',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4F6B58] focus-visible:ring-offset-2',
