@@ -4,7 +4,8 @@ import { LegalPage, PlaceholderNotice } from './LegalPage';
  * Impressum — TEILENTWURF.
  * Identitätsdaten übernommen aus der finalen Datenschutzerklärung
  * (Inhaber-Angabe, 25.10.2026): Claire Turi ist alleinige Betreiberin.
- * Offen bleibt: USt-IdNr./Kleinunternehmerregelung. Sobald der finale
+ * USt-Frage geklärt: Kleinunternehmerin gemäß § 19 UStG, keine USt-IdNr
+ * (siehe Abschnitt "Umsatzsteuer"). Sobald der finale
  * eRecht24-Impressumstext vorliegt, diese Seite 1:1 ersetzen und die
  * PlaceholderNotice entfernen.
  */
@@ -48,10 +49,10 @@ export function ImpressumPage() {
       </section>
 
       <section>
-        <h2>Umsatzsteuer-ID</h2>
+        <h2>Umsatzsteuer</h2>
         <p>
-          [USt-IdNr. TODO, falls vorhanden – sonst Hinweis auf
-          Kleinunternehmerregelung gem. § 19 UStG prüfen]
+          Es wird keine Umsatzsteuer ausgewiesen, da die Anbieterin als
+          Kleinunternehmerin im Sinne des § 19 UStG gilt.
         </p>
       </section>
 

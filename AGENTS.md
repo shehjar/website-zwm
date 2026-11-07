@@ -57,6 +57,10 @@ rental business ("Zum Wohl Mobil", Claire & Haider).
   where possible.
 - `index.html` meta tags must never reference third-party placeholders
   (e.g. bolt.new) again.
+- Pricing copy rule: Zum Wohl Mobil is a **Kleinunternehmerin (§ 19 UStG)**.
+  Never state or re-add "inkl. MwSt." or any VAT-inclusive claim anywhere
+  (site copy, price PDFs, future pages). Prices are Pauschalpreise; the
+  § 19 UStG note lives in the Impressum only (section "Umsatzsteuer").
 - `.env` is gitignored and currently unused — never commit secrets or keys.
 
 ## Verification checklist — run before every commit/merge

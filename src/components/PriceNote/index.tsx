@@ -14,8 +14,7 @@ export type PriceNoteProps = {
 
 export function PriceNote({
   items = [
-  'Standort: Nürnberg – Anfahrt inklusive bis 50 km, danach 3,00 € pro km',
-  'Alle Preise inkl. MwSt.'],
+  'Standort: Nürnberg – Anfahrt inklusive bis 50 km, danach 3,00 € pro km'],
 
   children,
   separator = '·',
