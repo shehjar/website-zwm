@@ -70,11 +70,13 @@ je früher, desto besser.**
 
 ## ✅ Erledigt
 
-- [x] 2026-11-15 — SEO-/AEO-Basis live vorbereitet: Prerendering (statisches
-      HTML für alle Routen), robots.txt, sitemap.xml, JSON-LD
-      (LocalBusiness/WebSite/FAQPage), OG-Meta, lokale Keywords
-      („Mobile Bar mieten Nürnberg"), FAQ als Single Source.
-      Konfiguration liegt in `src/seo.ts` und `src/content/faq.ts` —
-      Änderungen dort genügen (siehe AGENTS.md → „SEO & AEO").
+- [x] 2026-11-15 — SEO-/AEO-Basis **live auf zumwohlmobil.de** (PR #6,
+      squash-merged als 61cefd2, Netlify-Produktivdeploy verifiziert):
+      alle Routen servieren prerendered HTML (200, route-spezifische
+      Titles), JSON-LD (LocalBusiness/WebSite/FAQPage) parse-fähig,
+      robots.txt + sitemap.xml erreichbar, kanonische URLs ohne
+      Redirect-Ketten. Konfiguration liegt in `src/seo.ts` und
+      `src/content/faq.ts` — Änderungen dort genügen (siehe AGENTS.md →
+      „SEO & AEO").
 - [x] 2026-11-15 — Entscheidung Region: „Nürnberg first, Deutschland
       möglich" (primär Metropolregion, sekundär deutschlandweit 3,00 €/km).
