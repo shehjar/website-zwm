@@ -76,7 +76,10 @@ rental business ("Zum Wohl Mobil", Claire & Haider).
 4. Asset audit: every root-relative asset URL referenced in `dist/`
    (js/css/html) must exist in `dist/` (build only catches code errors, NOT
    missing `public/` files).
-5. `npm run dev` smoke test: `/`, `/impressum`, `/datenschutz`, `/agb`,
+5. Prerender check: `dist/index.html` contains real content (e.g.
+   `grep -c Nürnberg dist/index.html` > 0), `dist/{impressum,datenschutz,agb}.html`
+   exist with route-specific `<title>`, and `dist/sitemap.xml` is present.
+6. `npm run dev` smoke test: `/`, `/impressum`, `/datenschutz`, `/agb`,
    pricing-tier → form prefill, form submit flow.
 
 ## Deploy loop
@@ -86,6 +89,53 @@ rental business ("Zum Wohl Mobil", Claire & Haider).
 - Never deploy manually to production; never edit Netlify UI settings that
   contradict `netlify.toml` (build `npm run build`, publish `dist`, Node 20).
 - Rollback: Netlify UI "restore previous deploy", or `git revert` + push.
+
+## SEO & AEO (live since 2026-11-15)
+
+- **Central config: `src/seo.ts`** — ALL search-relevant strings live there
+  (per-route title/description in `ROUTE_SEO`, business/NAP data, `areaServed`
+  cities, offers, `priceRange`, JSON-LD builders, sitemap builder). Change SEO
+  copy or schema data **only** in this file, never hardcoded in components or
+  `index.html`. Keep NAP data in sync with the Impressum.
+- **FAQ single source: `src/content/faq.ts`** — plain-text answers with
+  `**fett**` markers. `src/content/faqRender.tsx` → JSX (`<strong>`) for the
+  UI; `faqPlainText()` → text for the FAQPage JSON-LD. Edit FAQ content only
+  here; UI, schema, and prerendered HTML all follow. No React import in
+  `faq.ts` (it is loaded from `vite.config.ts` via `seo.ts`).
+- **Prerendering (SSG):** `npm run build` = `vite build && node
+  scripts/prerender.mjs`. The script SSR-builds `src/entry-server.tsx`
+  (react-dom/server + StaticRouter, shared route table `src/routes.tsx`),
+  renders `/`, `/impressum`, `/datenschutz`, `/agb` into static HTML in
+  `dist/` (incl. JSON-LD injection at `<!--app-head-->` and app HTML at
+  `<!--app-html-->`), and writes `dist/sitemap.xml`. Reason: AI crawlers
+  (GPTBot, ClaudeBot, PerplexityBot) don't execute JS — without prerendering
+  they'd see an empty page.
+- **`index.html` uses `__SEO_*__` tokens** (title/description/canonical/
+  og:image). Dev replaces them via the `seo-tokens-dev` Vite plugin
+  (`vite.config.ts`, home route); build replaces them per route in
+  `scripts/prerender.mjs` (shared logic: `scripts/seo-tokens.mjs`). Do not
+  hardcode meta values in `index.html`.
+- **Hydration:** `src/main.tsx` uses `hydrateRoot` when `#root` contains
+  prerendered markup, else `createRoot`. Any new component must render
+  deterministically on server and client (no `window`/`document` during
+  render, no build-time-frozen dates — see the `today` effect pattern in
+  `InquiryForm`).
+- **`public/robots.txt`** allows all crawlers incl. AI bots and references
+  the sitemap. Keep AI crawlers allowed (AEO strategy).
+- **Local strategy:** „Nürnberg first, Deutschland möglich" — primary
+  keywords target the metro region (Nürnberg/Fürth/Erlangen/Schwabach,
+  Anfahrt ≤50 km), deutschlandweit is the secondary message (3,00 €/km).
+- **Flat prerendered files:** legal routes are written as
+  `dist/<route>.html` (not directories) so Netlify serves `/impressum`
+  directly via Pretty URLs (200, no 301 to `/impressum/`) — served URL and
+  canonical stay identical. `_redirects` only catches true misses.
+- **Owner to-dos (off-site, biggest local lead lever):** create the Google
+  Business Profile (service-area business; categories Bar/Eventagentur/
+  Caterer; NAP identical to Impressum; postcard verification takes days),
+  register in Google Search Console (+ submit sitemap), then 2–3 event
+  directories/citations. **These are tracked in `OWNER_TODO.md`** — the
+  async communication file between owner and agents; update it whenever
+  owner tasks arise or are completed, and check it for open owner answers.
 
 ## Performance guardrails
 
@@ -99,8 +149,11 @@ rental business ("Zum Wohl Mobil", Claire & Haider).
 ## Owner-approved backlog (unprioritized, pick one at a time)
 
 - Self-host Google Fonts (removes CDN call + Datenschutzerklärung item).
-- OG/social meta with a real share image on zumwohlmobil.de.
-- SEO: robots.txt, sitemap.xml, Google Search Console, LocalBusiness JSON-LD.
+- Real 1200×630 share image for OG/Twitter (meta tags themselves are live;
+  currently the portrait hero `First_page.jpeg` is used as `og:image` —
+  crops awkwardly in some share previews).
+- Google Search Console einrichten + Sitemap einreichen; Google Business
+  Profile anlegen (siehe SEO & AEO, Owner to-dos).
 - Cookie-less analytics (Plausible/Umami) + privacy-policy line.
 - Perf polish: width/height attrs on images (CLS), hero preload (LCP).
 - Content: final eRecht24 Impressum + AGB texts (Datenschutz already live);

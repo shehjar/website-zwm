@@ -1,0 +1,8 @@
+# zumwohlmobil.de — alle Crawler sind willkommen, ausdrücklich auch
+# AI-Crawler (GPTBot, ClaudeBot, PerplexityBot u. a.): Die Inhalte dürfen
+# für Suchergebnisse und AI-Antwortmaschinen erfasst werden (AEO).
+
+User-agent: *
+Allow: /
+
+Sitemap: https://zumwohlmobil.de/sitemap.xml

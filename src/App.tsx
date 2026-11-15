@@ -22,6 +22,8 @@ import { PillButton } from '@/components/PillButton';
 import { InquiryForm } from '@/components/InquiryForm';
 import { FaqSection } from '@/components/FaqSection';
 import type { FaqItem } from '@/components/FaqSection';
+import { FAQ_ENTRIES } from '@/content/faq';
+import { renderFaqAnswer } from '@/content/faqRender';
 import { TestimonialSection } from '@/components/TestimonialSection';
 import type { Testimonial } from '@/components/TestimonialSection';
 import { DownloadCallout } from '@/components/DownloadCallout';
@@ -101,70 +103,13 @@ const DRINKS = [
   }
 ];
 
-const FAQ_ITEMS: FaqItem[] = [
-  {
-    question: 'Was ist in der Getränkepauschale enthalten?',
-    answer: (
-      <>
-        Jeder Preis ist ein <strong>Pauschalpreis für dein ganzes Fest</strong> (nicht pro Person)
-        und enthält: <strong>ein Getränk pro Person</strong> – wir bieten ausschließlich Aperol Spritz
-        und verschiedene Aperol-Kreationen an, eine Übersicht findest du unter Rezepte –, die
-        <strong> Selbstbedienungsbar</strong> (Aufbau, Vorbereitung und Abbau sind bereits Bestandteil
-        der Buchung; ein Ausschank oder eine Betreuung der Gäste vor Ort ist nicht vorgesehen) sowie
-        <strong> Wagenmiete & Dekoration</strong>. Die Anfahrt ist bis 50 km inklusive, für jeden
-        weiteren Kilometer berechnen wir 3,00 €.
-      </>
-    )
-  },
-  {
-    question: 'Gibt es auch alkoholfreie Getränke?',
-    answer: (
-      <>
-        Ja – alle unsere Getränke gibt es auch als <strong>alkoholfreie Variante</strong>. Du kannst
-        also jeden der drei Spritz aus der Getränkeübersicht ohne Alkohol genießen. Eine Übersicht
-        aller Getränke findest du unter Rezepte.
-      </>
-    )
-  },
-  {
-    question: 'Wie viel Platz braucht der Wagen und braucht er Strom?',
-    answer: (
-      <>
-        Der Wagen passt auf eine Stellfläche von etwa <strong>3 × 1,5 m</strong> und braucht keinen
-        eigenen Stromanschluss. Am besten ist ein ebener Untergrund – wir richten alles für dich ein.
-      </>
-    )
-  },
-  {
-    question: 'Wie läuft Aufbau und Abbau ab?',
-    answer: (
-      <>
-        Aufbau, Vorbereitung und Abbau sind bereits <strong>in der Buchung enthalten</strong>. Wir
-        liefern den Wagen an, bauen auf und holen ihn nach dem Fest wieder ab – für dich bleibt
-        nichts zu tun.
-      </>
-    )
-  },
-  {
-    question: 'Was passiert bei einer Anfahrt über 50 km?',
-    answer: (
-      <>
-        Die Anfahrt bis <strong>50 km ist inklusive</strong>. Für jeden weiteren Kilometer
-        berechnen wir 3,00 € – die Entfernung klären wir gemeinsam bei deiner Anfrage.
-      </>
-    )
-  },
-  {
-    question: 'Wie läuft die Buchung konkret ab?',
-    answer: (
-      <>
-        Deine Anfrage ist <strong>unverbindlich und kostenlos</strong>. Wir prüfen, ob der Wagen an
-        deinem Wunschtermin frei ist, und melden uns in der Regel innerhalb von 24 Stunden bei dir.
-        Verbindlich wird es erst, wenn wir alle Details gemeinsam besprochen haben.
-      </>
-    )
-  }
-];
+// FAQ-Inhalte: eine Quelle in `src/content/faq.ts` (Klartext mit
+// **fett**-Markierung) — daraus werden hier die JSX-Antworten für die UI
+// abgeleitet; das FAQPage-JSON-LD nutzt dieselben Daten als Klartext.
+const FAQ_ITEMS: FaqItem[] = FAQ_ENTRIES.map(({ question, answer }) => ({
+  question,
+  answer: renderFaqAnswer(answer)
+}));
 
 // Platzhalter-Stimmen – NICHT veröffentlichen (erfundene Bewertungen sind
 // wettbewerbswidrig, UWG). SHOW_TESTIMONIALS erst auf true setzen, wenn echte
@@ -222,6 +167,7 @@ export default function App() {
             }
             ctaLabel="Jetzt anfragen"
             ctaHref="#kontakt"
+            subline="Spritzig unterwegs aus Nürnberg – für Hochzeiten, Geburtstage und Firmenfeiern in Franken und ganz Deutschland."
             imageSrc={HERO_IMAGE}
             imageAlt="Unsere mobile Aperol-Spritz-Bar mit Lampions und Getränkespendern im Garten"
           />
