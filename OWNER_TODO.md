@@ -1,82 +1,82 @@
-# OWNER_TODO — Asynchrone Kommunikation zwischen Claire & Agent
+# OWNER_TODO — Async communication between the owner and agents
 
-Hier stehen die Aufgaben, die **nur die Ownerin** erledigen kann (Konten,
-Verifizierungen, Entscheidungen), plus Status-Updates vom Agenten.
-Konvention:
+This file tracks the tasks **only the owner can do** (accounts,
+verifications, decisions) plus status updates from agents. Conventions:
 
-- `[ ]` offen · `[x]` erledigt (mit Datum in Klammern)
-- Neue Aufgaben werden unter der passenden Rubrik ergänzt, nicht gelöscht;
-  erledigte bleiben mit Datum stehen (Verlauf).
-- Agenten: Aktualisiert diese Datei, wenn Owner-Aufgaben anfallen oder
-  Antworten auf unten stehende Fragen vorliegen.
+- `[ ]` open · `[x]` done (with date in parentheses)
+- New tasks are added under the matching category, never deleted; completed
+  ones stay visible with their date (history).
+- Agents: update this file whenever owner tasks arise or are completed, and
+  check the open-questions section for pending owner answers.
+- Language policy (see AGENTS.md): this file is English; values you must
+  type into German services (addresses, category names) stay German.
 
 ---
 
-## 🔴 Priorität 1 — Google Business Profile (größter lokaler Lead-Hebel)
+## 🔴 Priority 1 — Google Business Profile (biggest local lead lever)
 
-Ohne Profil erscheint Zum Wohl Mobil nicht bei Google Maps und im
-Local-Pack („mobile Bar Nürnberg") — dort entscheiden sich die meisten
-lokalen Buchungen. **Die Verifizierung per Postkarte dauert mehrere Tage —
-je früher, desto besser.**
+Without a profile, Zum Wohl Mobil does not appear on Google Maps or in the
+Local Pack ("mobile bar Nürnberg") — which is where most local booking
+decisions happen. **Postcard verification takes several days — the sooner
+you start, the better.**
 
-- [ ] Profil anlegen auf https://business.google.com mit:
-  - Name: **Zum Wohl Mobil** (exakt so, keine Keyword-Zusätze — sonst
-    Risiko einer Sperrung)
-  - Kategorie primär: **Eventagentur** (Alternativen: Bar, Cateringservice)
-  - Art: **Servicegebiet-Geschäft** (kein Ladenlokal für Kundenverkehr)
-  - Adresse: **Helenenstraße 38, 90419 Nürnberg** — MUSS exakt mit dem
-    Impressum übereinstimmen (NAP-Konsistenz)
-  - Telefon: **01774471833** (wie Impressum)
+- [ ] Create the profile at https://business.google.com with:
+  - Name: **Zum Wohl Mobil** (exactly this, no keyword additions — risks
+    suspension)
+  - Primary category: **Eventagentur** (alternatives: Bar, Cateringservice)
+  - Type: **service-area business** (no storefront for customer visits)
+  - Address: **Helenenstraße 38, 90419 Nürnberg** — MUST match the
+    Impressum exactly (NAP consistency)
+  - Phone: **01774471833** (as in the Impressum)
   - Website: **https://zumwohlmobil.de**
-  - Servicegebiet: Nürnberg, Fürth, Erlangen, Schwabach + Umkreis (~50 km);
-    Hinweis „deutschlandweit auf Anfrage" in die Beschreibung
-- [ ] Verifizierung abschließen (Postkarte/PIN — dauert oft 5–14 Tage)
-- [ ] Danach: Fotos hochladen (Wagen, Drinks, Events — dieselben Motive wie
-    auf der Website stärken den Wiedererkennungseffekt)
-- [ ] Beschreibungstext einfügen (kann vom Agenten geliefert werden —
-    einfach hier anfragen)
-- [ ] **Agent informieren, sobald Profil live ist** → Link wird dann in
-    Footer + `src/seo.ts` (`sameAs`) ergänzt
+  - Service area: Nürnberg, Fürth, Erlangen, Schwabach + radius (~50 km);
+    mention "deutschlandweit auf Anfrage" in the description
+- [ ] Complete verification (postcard/PIN — often takes 5–14 days)
+- [ ] Then: upload photos (bar wagon, drinks, events — same motifs as the
+    website strengthen recognition)
+- [ ] Add a business description (an agent can draft one on request —
+    just ask via the questions section below)
+- [ ] **Tell the agent once the profile is live** → the link will be added
+    to the footer and to `src/seo.ts` (`sameAs`)
 
-## 🟡 Priorität 2 — Google Search Console (Sichtbarkeit messen)
+## 🟡 Priority 2 — Google Search Console (measure visibility)
 
-- [ ] https://search.google.com/search-console — Property
-    **https://zumwohlmobil.de** hinzufügen
-- [ ] Verifizierung: empfohlen ist der DNS-Eintrag (Netlify) oder HTML-Tag —
-    bei Fragen Agenten fragen; der HTML-Tag-Meta-Ansatz erfordert eine
-    Code-Änderung, die der Agent übernimmt
-- [ ] Sitemap einreichen: `https://zumwohlmobil.de/sitemap.xml`
-- [ ] Nach ~2–4 Wochen: Agent die „Leistung"-Daten zeigen (welche
-    Suchbegriffe liefern Impressionen?) → daraus folgen Content-Entscheidungen
+- [ ] https://search.google.com/search-console — add the property
+    **https://zumwohlmobil.de**
+- [ ] Verification: the DNS record (Netlify) or HTML-tag methods are
+    recommended — ask the agent if unsure; the HTML-tag approach needs a
+    code change which the agent will make
+- [ ] Submit the sitemap: `https://zumwohlmobil.de/sitemap.xml`
+- [ ] After ~2–4 weeks: show the agent the "Performance" data (which search
+    terms produce impressions?) → that drives future content decisions
 
-## 🟢 Priorität 3 — Später (nach GBP + Search Console)
+## 🟢 Priority 3 — Later (after GBP + Search Console)
 
-- [ ] 2–3 Event-Portale/Verzeichnisse eintragen (z. B. eventpeppers,
-    Gelbe Seiten, 11880) — immer mit identischen NAP-Daten
-- [ ] Erstes echtes Share-Bild 1200×630 px liefern (für WhatsApp/Instagram-
-    Linkvorschauen; aktuell wird das Hochformat-Hero-Bild verwendet —
-    siehe Backlog in AGENTS.md)
-- [ ] Echte Gäste-Testimonials sammeln → `SHOW_TESTIMONIALS` in
-    `src/App.tsx` auf `true` (erst dann! erfundene Bewertungen = UWG-Risiko)
-- [ ] Finale eRecht24-Texte für Impressum (USt-IdNr. prüfen) + AGB liefern
+- [ ] Get listed in 2–3 event directories (e.g. eventpeppers, Gelbe
+    Seiten, 11880) — always with identical NAP data
+- [ ] Provide a real 1200×630 px share image (for WhatsApp/Instagram link
+    previews; the portrait hero image is currently used as `og:image` —
+    see the backlog in AGENTS.md)
+- [ ] Collect real guest testimonials → flip `SHOW_TESTIMONIALS` in
+    `src/App.tsx` to `true` (only then! invented reviews = UWG legal risk)
+- [ ] Provide the final eRecht24 texts for Impressum (check USt-IdNr) + AGB
 
 ---
 
-## ❓ Offene Fragen an die Ownerin
+## ❓ Open questions to the owner
 
-*(Agenten tragen hier Fragen ein, die sie nicht selbst entscheiden können.)*
+*(Agents add questions here that they cannot decide on their own.)*
 
-- _(aktuell keine)_
+- _(none at the moment)_
 
-## ✅ Erledigt
+## ✅ Done
 
-- [x] 2026-11-15 — SEO-/AEO-Basis **live auf zumwohlmobil.de** (PR #6,
-      squash-merged als 61cefd2, Netlify-Produktivdeploy verifiziert):
-      alle Routen servieren prerendered HTML (200, route-spezifische
-      Titles), JSON-LD (LocalBusiness/WebSite/FAQPage) parse-fähig,
-      robots.txt + sitemap.xml erreichbar, kanonische URLs ohne
-      Redirect-Ketten. Konfiguration liegt in `src/seo.ts` und
-      `src/content/faq.ts` — Änderungen dort genügen (siehe AGENTS.md →
-      „SEO & AEO").
-- [x] 2026-11-15 — Entscheidung Region: „Nürnberg first, Deutschland
-      möglich" (primär Metropolregion, sekundär deutschlandweit 3,00 €/km).
+- [x] 2026-11-15 — SEO/AEO foundation **live on zumwohlmobil.de** (PR #6,
+      squash-merged as 61cefd2, Netlify production deploy verified):
+      all routes serve prerendered HTML (200, route-specific titles),
+      JSON-LD (LocalBusiness/WebSite/FAQPage) parses cleanly, robots.txt +
+      sitemap.xml reachable, canonical URLs without redirect chains.
+      Configuration lives in `src/seo.ts` and `src/content/faq.ts` —
+      editing there is enough (see AGENTS.md → "SEO & AEO").
+- [x] 2026-11-15 — Region decision: "Nürnberg first, Deutschland möglich"
+      (primary: metro region; secondary: Germany-wide at 3,00 €/km).

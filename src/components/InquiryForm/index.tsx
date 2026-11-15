@@ -89,10 +89,10 @@ export function InquiryForm({
   });
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
-  // Heutiges Datum (min-Grenze der Terminauswahl): bewusst client-seitig per
-  // Effect gesetzt — im prerendered HTML (SSG) wäre ein Render-Zeitpunkt
-  // eingefroren und das Datum nach dem Build veraltet. '' bis zum Mount ist
-  // unkritisch: validiert wird erst beim Submit (dann ist der Effekt gelaufen).
+  // Today's date (min bound of the date picker): deliberately set
+  // client-side in an effect — in prerendered HTML (SSG) a render-time
+  // value would be frozen and go stale after the build. '' until mount is
+  // safe: validation only runs on submit (by then the effect has run).
   const [today, setToday] = useState('');
   useEffect(() => {
     setToday(new Date().toISOString().slice(0, 10));

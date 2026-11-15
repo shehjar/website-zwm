@@ -1,10 +1,10 @@
 import React from 'react';
 
 /**
- * Wandelt eine FAQ-Antwort aus `./faq` in JSX um: `**Text**` wird zu
- * <strong>Text</strong>, der Rest bleibt normaler Text. Bewusst minimal
- * gehalten (keine Markdown-Bibliothek) — Fett ist die einzige Auszeichnung,
- * die die FAQ-Antworten verwenden.
+ * Converts a FAQ answer from `./faq` into JSX: `**Text**` becomes
+ * <strong>Text</strong>, everything else stays plain text. Deliberately
+ * minimal (no Markdown library) — bold is the only markup the FAQ answers
+ * use.
  */
 export function renderFaqAnswer(answer: string): React.ReactNode {
   const parts = answer.split('**');

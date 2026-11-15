@@ -1,23 +1,24 @@
 /**
- * src/content/faq.ts — EINE Quelle für alle FAQ-Inhalte.
+ * src/content/faq.ts — ONE source for all FAQ content.
  *
- * Die Antworten sind einfacher Text mit `**fett**`-Auszeichnung (wie Markdown).
- * Daraus werden beide Welten abgeleitet, damit Inhalte nie doppelt gepflegt
- * werden müssen:
- *  - sichtbare UI: `renderFaqAnswer()` aus `./faqRender` erzeugt JSX mit <strong>
- *  - SEO/AEO: `faqPlainText()` erzeugt reinen Text für das FAQPage-JSON-LD
+ * Answers are plain text with `**bold**` markup (like Markdown). Both
+ * worlds are derived from it so content never has to be maintained twice:
+ *  - visible UI: `renderFaqAnswer()` from `./faqRender` produces JSX with <strong>
+ *  - SEO/AEO: `faqPlainText()` produces plain text for the FAQPage JSON-LD
  *
- * Inhalt hier ändern → UI, Schema und prerendered HTML aktualisieren sich
- * beim nächsten Build automatisch.
+ * Edit content here → UI, schema, and prerendered HTML all update
+ * automatically on the next build.
  *
- * Hinweis: Diese Datei darf KEIN React importieren — sie wird auch von
- * `src/seo.ts` genutzt, das wiederum aus `vite.config.ts` (Node-Kontext)
- * geladen wird.
+ * NOTE: the answer *texts* are German website content — do not translate
+ * them (language policy, see AGENTS.md). Only comments/docs are English.
+ *
+ * NOTE: This file must NOT import React — it is also used by `src/seo.ts`,
+ * which is loaded from `vite.config.ts` (Node context).
  */
 
 export interface FaqEntry {
   question: string;
-  /** Antwort als Klartext; `**Text**` wird in der UI fett gerendert. */
+  /** Answer as plain text; `**Text**` renders bold in the UI. */
   answer: string;
 }
 
@@ -69,10 +70,10 @@ export const FAQ_ENTRIES: FaqEntry[] = [
 ];
 
 /**
- * Entfernt die `**`-Auszeichnung → reiner Text für JSON-LD (FAQPage-Schema),
- * Meta-Beschreibungen und alle weiteren SEO/AEO-Konsumenten.
+ * Strips the `**` markup → plain text for the JSON-LD (FAQPage schema),
+ * meta descriptions, and all other SEO/AEO consumers.
  */
 export function faqPlainText(answer: string): string {
-  // split/join statt replaceAll: tsconfig-lib ist ES2020 (replaceAll = ES2021)
+  // split/join instead of replaceAll: tsconfig lib is ES2020 (replaceAll = ES2021)
   return answer.split('**').join('');
 }

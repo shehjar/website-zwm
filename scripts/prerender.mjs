@@ -1,23 +1,23 @@
 /**
- * Prerendering (SSG) für zumwohlmobil.de — läuft als zweiter Schritt von
- * `npm run build` nach `vite build`.
+ * Prerendering (SSG) for zumwohlmobil.de — runs as the second step of
+ * `npm run build`, after `vite build`.
  *
- * Warum: Die Site ist eine SPA; Crawler ohne JS-Ausführung (vor allem
- * AI-Crawler wie GPTBot, ClaudeBot, PerplexityBot) sähen nur ein leeres
- * <div id="root">. Dieses Skript rendert alle Routen serverseitig zu
- * statischem HTML, damit Such- und Antwortmaschinen den vollen Inhalt
- * (Texte, Preise, FAQ, JSON-LD) direkt im ausgelieferten HTML finden.
+ * Why: the site is an SPA; crawlers without JS execution (especially AI
+ * crawlers like GPTBot, ClaudeBot, PerplexityBot) would only see an empty
+ * <div id="root">. This script renders all routes server-side to static
+ * HTML so search and answer engines find the full content (copy, prices,
+ * FAQ, JSON-LD) directly in the served HTML.
  *
- * Ablauf:
- *  1. SSR-Bundle aus `src/entry-server.tsx` nach `dist-server/` bauen
- *  2. `dist/index.html` als Template laden (enthält noch `__SEO_*__`-Tokens
- *     und die Marker `<!--app-head-->` / `<!--app-html-->`)
- *  3. Pro Route: HTML rendern, Meta-Tokens ersetzen, JSON-LD injizieren,
- *     nach `dist/index.html` bzw. `dist/<route>.html` schreiben
- *  4. `dist/sitemap.xml` erzeugen, `dist-server/` aufräumen
+ * Steps:
+ *  1. Build the SSR bundle from `src/entry-server.tsx` into `dist-server/`
+ *  2. Load `dist/index.html` as the template (still contains the
+ *     `__SEO_*__` tokens and the `<!--app-head-->` / `<!--app-html-->` markers)
+ *  3. Per route: render HTML, replace meta tokens, inject JSON-LD,
+ *     write to `dist/index.html` or `dist/<route>.html`
+ *  4. Generate `dist/sitemap.xml`, clean up `dist-server/`
  *
- * Alle SEO-Werte kommen aus `src/seo.ts` (über das SSR-Bundle) — hier wird
- * nichts inhaltlich dupliziert.
+ * All SEO values come from `src/seo.ts` (via the SSR bundle) — nothing is
+ * duplicated here.
  */
 import { build } from 'vite';
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
@@ -28,8 +28,8 @@ import { applySeoTokens } from './seo-tokens.mjs';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const distDir = resolve(root, 'dist');
 
-// 1. SSR-Bundle bauen (nutzt vite.config.ts: Alias, React-Plugin;
-//    das Dev-Plugin `seo-tokens-dev` greift hier nicht, apply: 'serve').
+// 1. Build the SSR bundle (uses vite.config.ts: alias, React plugin;
+//    the dev plugin `seo-tokens-dev` does not apply here, apply: 'serve').
 await build({
   root,
   configFile: resolve(root, 'vite.config.ts'),
@@ -45,15 +45,15 @@ const server = await import(
   pathToFileURL(resolve(root, 'dist-server/entry-server.js')).href
 );
 
-// 2. Template laden — `vite build` hat Assets bereits referenziert.
+// 2. Load the template — `vite build` has already hashed asset references.
 const template = await readFile(resolve(distDir, 'index.html'), 'utf8');
 if (!template.includes('<!--app-html-->')) {
   throw new Error(
-    'prerender: Marker <!--app-html--> fehlt in dist/index.html — index.html nicht manuell überschreiben.'
+    'prerender: marker <!--app-html--> missing in dist/index.html — do not overwrite index.html manually.'
   );
 }
 
-// 3. Routen rendern und schreiben.
+// 3. Render and write each route.
 for (const path of server.ROUTE_PATHS) {
   const appHtml = server.renderRoute(path);
   const seo = server.getRouteSeo(path);
@@ -66,17 +66,17 @@ for (const path of server.ROUTE_PATHS) {
   const outFile =
     path === '/'
       ? resolve(distDir, 'index.html')
-      : // Flache Datei statt Verzeichnis: Netlify serviert /impressum dann
-        // direkt aus impressum.html (Pretty URL, 200 ohne 301-Umleitung auf
-        // /impressum/) — kanonische URL und ausgelieferte URL bleiben gleich.
+      : // Flat file instead of a directory: Netlify then serves /impressum
+        // directly from impressum.html (Pretty URL, 200 without a 301
+        // redirect to /impressum/) — canonical and served URL stay identical.
         resolve(distDir, `${path.replace(/^\//, '')}.html`);
   await mkdir(dirname(outFile), { recursive: true });
   await writeFile(outFile, html);
   console.log(`prerender: ${path} → ${outFile.slice(root.length + 1)}`);
 }
 
-// 4. Sitemap erzeugen + SSR-Build aufräumen.
+// 4. Generate the sitemap + clean up the SSR build.
 await writeFile(resolve(distDir, 'sitemap.xml'), server.buildSitemapXml());
-console.log('prerender: sitemap.xml geschrieben');
+console.log('prerender: wrote sitemap.xml');
 await rm(resolve(root, 'dist-server'), { recursive: true, force: true });
-console.log('prerender: fertig.');
+console.log('prerender: done.');

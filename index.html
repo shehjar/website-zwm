@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/Logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- JSON-LD (LocalBusiness, WebSite, FAQPage) wird beim Prerendering
-         hier injiziert; Werte ausschließlich aus src/seo.ts. -->
+    <!-- The JSON-LD (LocalBusiness, WebSite, FAQPage) is injected here at
+         prerender time; values come exclusively from src/seo.ts. -->
     <!--app-head-->
-    <!-- Die __SEO_*__-Platzhalter ersetzt in Dev das Vite-Plugin
-         "seo-tokens-dev" (Home-Meta aus src/seo.ts) und beim Build
-         scripts/prerender.mjs pro Route. Nicht hartkodieren! -->
+    <!-- The __SEO_*__ placeholders are replaced in dev by the Vite plugin
+         "seo-tokens-dev" (home meta from src/seo.ts) and at build time by
+         scripts/prerender.mjs per route. Do not hardcode meta values! -->
     <title>__SEO_TITLE__</title>
     <meta name="description" content="__SEO_DESCRIPTION__" />
     <link rel="canonical" href="__SEO_CANONICAL__" />
@@ -26,8 +26,8 @@
     <meta name="twitter:image" content="__SEO_OG_IMAGE__" />
   </head>
   <body>
-    <!-- Prerendered HTML landet zwischen diesen Kommentaren bzw. im
-         root-Div; der Client hydratisiert es (hydrateRoot in main.tsx). -->
+    <!-- Prerendered HTML lands between these comments / inside the root
+         div; the client hydrates it (hydrateRoot in main.tsx). -->
     <div id="root"><!--app-html--></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

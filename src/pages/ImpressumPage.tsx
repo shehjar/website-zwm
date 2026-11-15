@@ -1,13 +1,13 @@
 import { LegalPage, PlaceholderNotice } from './LegalPage';
 
 /**
- * Impressum — TEILENTWURF.
- * Identitätsdaten übernommen aus der finalen Datenschutzerklärung
- * (Inhaber-Angabe, 25.10.2026): Claire Turi ist alleinige Betreiberin.
- * USt-Frage geklärt: Kleinunternehmerin gemäß § 19 UStG, keine USt-IdNr
- * (siehe Abschnitt "Umsatzsteuer"). Sobald der finale
- * eRecht24-Impressumstext vorliegt, diese Seite 1:1 ersetzen und die
- * PlaceholderNotice entfernen.
+ * Impressum — PARTIAL DRAFT.
+ * Identity data taken from the final privacy policy (owner statement,
+ * 2026-10-25): Claire Turi is the sole operator.
+ * VAT question settled: small business under § 19 UStG, no VAT ID
+ * (see the "Umsatzsteuer" section). As soon as the final eRecht24
+ * Impressum text arrives, replace this page 1:1 and remove the
+ * PlaceholderNotice.
  */
 export function ImpressumPage() {
   return (

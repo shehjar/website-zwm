@@ -5,10 +5,10 @@ import { applySeoTokens } from './scripts/seo-tokens.mjs';
 import { ROUTE_SEO, SEO } from './src/seo';
 
 /**
- * Ersetzt die %SEO_*%-Platzhalter in index.html NUR im Dev-Server durch
- * die Home-Meta aus src/seo.ts. Beim Build bleiben die Tokens erhalten —
- * dort ersetzt scripts/prerender.mjs sie pro Route mit den korrekten
- * route-spezifischen Werten.
+ * Replaces the __SEO_*__ placeholders in index.html — ONLY in the dev
+ * server — with the home-route meta from src/seo.ts. During the build the
+ * tokens are kept; scripts/prerender.mjs replaces them per route with the
+ * correct route-specific values.
  */
 function seoTokensDevPlugin(): Plugin {
   const home = ROUTE_SEO.find((r) => r.path === '/') ?? ROUTE_SEO[0];

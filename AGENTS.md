@@ -29,7 +29,7 @@ rental business ("Zum Wohl Mobil", Claire & Haider).
 - Import project modules via the `@/` alias (`@/components/Foo`), not deep
   relative paths.
 - Copy is **German**, warm and personal, du-form ("dein Fest"). Keep Umlaute
-  and typographic quotes consistent with existing text.
+  and typographic quotes consistent with existing text. See Language policy.
 - Design tokens are CSS variables (`src/index.css`); Tailwind theme maps onto
   them (`tailwind.config.js`). Do not hardcode palette colors in components
   except where existing components already do (PillButton).
@@ -40,8 +40,29 @@ rental business ("Zum Wohl Mobil", Claire & Haider).
   only as `min-h-*` plus vertical padding; spot-check new UI at ~360px width.
   The global `overflow-x: clip` guard clips overflow instead of scrolling —
   over-wide elements are silently cut off, so width-safety must be designed in.
-- Commits: imperative subject, conventional prefix (`feat:`, `fix:`, `chore:`,
-  `perf:`), body explains why. One logical change per commit.
+- Commits: imperative subject in **English**, conventional prefix (`feat:`,
+  `fix:`, `chore:`, `perf:`, `docs:`), body explains why. One logical change
+  per commit.
+
+## Language policy — one rule, no exceptions
+
+> **Anything a website visitor sees → German. Everything else → English.**
+
+Litmus test: would Claire see it on zumwohlmobil.de (page, Google result,
+AI answer, share preview)? Yes → German. No → English.
+
+| Artifact | Language |
+|---|---|
+| Website copy: components, `App.tsx` content, hero, FAQ answers, legal pages | 🇩🇪 German |
+| `src/seo.ts` values: titles/descriptions, JSON-LD text (`knowsAbout`, offer descriptions), `src/content/faq.ts` answers | 🇩🇪 German (they render in search results / AI answers — they ARE website content) |
+| Conversation with the owner | 🇬🇧 English |
+| `AGENTS.md`, `OWNER_TODO.md` | 🇬🇧 English (German proper nouns/data kept where the owner must type them into German services, e.g. addresses, „Eventagentur") |
+| Commit messages, PR titles/bodies, branch names | 🇬🇧 English |
+| Code comments, JSDoc, console/error messages in scripts | 🇬🇧 English |
+| Variable/file names | 🇬🇧 English (content *values* like route names unchanged) |
+
+Never mix: a comment describing German copy is written in English; a string
+that renders on the site is never translated to English.
 
 ## Release rules — do not violate
 

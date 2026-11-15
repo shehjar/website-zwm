@@ -103,17 +103,17 @@ const DRINKS = [
   }
 ];
 
-// FAQ-Inhalte: eine Quelle in `src/content/faq.ts` (Klartext mit
-// **fett**-Markierung) — daraus werden hier die JSX-Antworten für die UI
-// abgeleitet; das FAQPage-JSON-LD nutzt dieselben Daten als Klartext.
+// FAQ content: single source in `src/content/faq.ts` (plain text with
+// **bold** markers) — the JSX answers for the UI are derived here; the
+// FAQPage JSON-LD uses the same data as plain text.
 const FAQ_ITEMS: FaqItem[] = FAQ_ENTRIES.map(({ question, answer }) => ({
   question,
   answer: renderFaqAnswer(answer)
 }));
 
-// Platzhalter-Stimmen – NICHT veröffentlichen (erfundene Bewertungen sind
-// wettbewerbswidrig, UWG). SHOW_TESTIMONIALS erst auf true setzen, wenn echte
-// Gästestimmen vorliegen.
+// Placeholder testimonials – DO NOT publish (invented reviews violate
+// competition law, UWG). Only flip SHOW_TESTIMONIALS to true once real
+// guest quotes are available.
 const SHOW_TESTIMONIALS = false;
 const TESTIMONIALS: Testimonial[] = [
   {
