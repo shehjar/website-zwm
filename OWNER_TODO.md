@@ -71,6 +71,11 @@ you start, the better.**
 
 ## ✅ Done
 
+- [x] 2026-11-15 — Language policy live (PR #8, merged as 7757068):
+      visitor-facing content stays German, all dev artifacts (docs,
+      comments, commits, OWNER_TODO) are English. Rule is permanent in
+      AGENTS.md → "Language policy". Production verified unchanged
+      (bundle byte-identical, all German content intact).
 - [x] 2026-11-15 — SEO/AEO foundation **live on zumwohlmobil.de** (PR #6,
       squash-merged as 61cefd2, Netlify production deploy verified):
       all routes serve prerendered HTML (200, route-specific titles),
