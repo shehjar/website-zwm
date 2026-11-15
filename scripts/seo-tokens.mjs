@@ -1,12 +1,12 @@
 /**
- * Ersetzt die `__SEO_*__`-Platzhalter in `index.html` durch konkrete Werte.
+ * Replaces the `__SEO_*__` placeholders in `index.html` with concrete values.
  *
- * Geteilte Logik für zwei Konsumenten (reines Node-ESM, kein TS):
- *  - Dev: Vite-Plugin `seo-tokens-dev` in `vite.config.ts` (Home-Route)
- *  - Build: `scripts/prerender.mjs` (pro Route)
+ * Shared logic for two consumers (plain Node ESM, no TS):
+ *  - dev: the `seo-tokens-dev` Vite plugin in `vite.config.ts` (home route)
+ *  - build: `scripts/prerender.mjs` (per route)
  *
- * Die Platzhalter-Bauteile stehen in `index.html`; die Werte kommen aus
- * `src/seo.ts` — dort (und NUR dort) werden SEO-Texte gepflegt.
+ * The placeholders live in `index.html`; the values come from `src/seo.ts` —
+ * SEO strings are maintained there (and ONLY there).
  */
 
 export const SEO_TOKENS = {
@@ -16,7 +16,7 @@ export const SEO_TOKENS = {
   ogImage: '__SEO_OG_IMAGE__'
 };
 
-/** Escaped Sonderzeichen für die Einbettung in HTML-Attribute/Title. */
+/** Escapes special characters for embedding in HTML attributes/title. */
 function escapeHtml(value) {
   return String(value)
     .replaceAll('&', '&amp;')
@@ -26,9 +26,9 @@ function escapeHtml(value) {
 }
 
 /**
- * @param {string} html  Roh-HTML mit `__SEO_*__`-Platzhaltern
+ * @param {string} html  raw HTML containing `__SEO_*__` placeholders
  * @param {{title: string, description: string, canonical: string, ogImage: string}} seo
- * @returns {string} HTML mit ersetzten Platzhaltern
+ * @returns {string} HTML with placeholders replaced
  */
 export function applySeoTokens(html, seo) {
   return html

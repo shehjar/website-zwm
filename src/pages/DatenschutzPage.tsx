@@ -1,18 +1,18 @@
 import { LegalPage } from './LegalPage';
 
 /**
- * Finale Datenschutzerklärung — vom Inhaber am 25.10.2026 bereitgestellt
- * (eRecht24-Generator), veröffentlicht mit drei Richtigstellungen:
- *  1) Hosting-Abschnitt: Webflow (Falschangabe des Generators) ersetzt durch
- *     Netlify-Klausel (Adresse laut Netlify-DPA; SCC + DPF-Zertifizierung).
- *  2) Kontaktformular-Abschnitt ergänzt (FormSubmit.co, USA; Einwilligung via
- *     Pflicht-Checkbox im Formular als Rechtsgrundlage).
- *  3) Ankündigungs-Absatz „Analyse-Tools" entfernt (es werden keine
- *     Analyse-Tools eingesetzt).
- * Zusätzlich: Google-Fonts-Abschnitt (Fonts werden derzeit vom Google-CDN
- * geladen). WICHTIG: Diesen Abschnitt (Abschnitt 5) ENTFERNEN, sobald die
- * Fonts selbst gehostet werden (Backlog, siehe AGENTS.md).
- * Quellenangabe eRecht24 am Ende bleibt aus Lizenzgründen stehen.
+ * Final privacy policy — provided by the owner on 2026-10-25
+ * (eRecht24 generator), published with three corrections:
+ *  1) Hosting section: Webflow (generator's wrong default) replaced with
+ *     the Netlify clause (address per Netlify DPA; SCC + DPF certification).
+ *  2) Contact-form section added (FormSubmit.co, USA; consent via the
+ *     mandatory checkbox in the form as the legal basis).
+ *  3) "Analytics tools" announcement paragraph removed (no analytics
+ *     tools are in use).
+ * Additionally: Google Fonts section (fonts are currently loaded from the
+ * Google CDN). IMPORTANT: REMOVE that section (section 5) as soon as the
+ * fonts are self-hosted (backlog, see AGENTS.md).
+ * The eRecht24 attribution at the end stays for licensing reasons.
  */
 export function DatenschutzPage() {
   return (

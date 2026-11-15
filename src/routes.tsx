@@ -5,8 +5,8 @@ import { DatenschutzPage } from './pages/DatenschutzPage';
 import { AgbPage } from './pages/AgbPage';
 
 /**
- * Route-Tabelle der gesamten App — eine Quelle für Client (`main.tsx`)
- * und Server/Prerendering (`entry-server.tsx`), damit beide nie driften.
+ * Route table for the whole app — one source for the client (`main.tsx`)
+ * and the server/prerendering (`entry-server.tsx`) so the two never drift.
  */
 export function AppRoutes() {
   return (

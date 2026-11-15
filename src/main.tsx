@@ -5,11 +5,11 @@ import { AppRoutes } from './routes.tsx';
 import './index.css';
 
 /**
- * Die Route-Tabelle lebt in `src/routes.tsx` (eine Quelle für Client und
- * Prerendering). In Produktion liefert der Build prerendered HTML aus
- * (scripts/prerender.mjs) — dann wird hydratisiert statt neu gerendert,
- * damit Crawler-Inhalt und erste sichtbare Sekunde identisch bleiben.
- * Fällt das root-Div leer aus (z. B. Dev-Server), wird klassisch gemountet.
+ * The route table lives in `src/routes.tsx` (one source for client and
+ * prerendering). In production the build ships prerendered HTML
+ * (scripts/prerender.mjs) — it is hydrated instead of re-rendered so the
+ * crawler-visible content and the first visible second stay identical.
+ * If the root div is empty (e.g. dev server), mount the classic way.
  */
 const container = document.getElementById('root')!;
 const app = (

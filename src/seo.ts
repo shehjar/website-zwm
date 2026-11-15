@@ -1,62 +1,64 @@
 /**
- * src/seo.ts — ZENTRALE SEO-/AEO-KONFIGURATION.
+ * src/seo.ts — CENTRAL SEO/AEO CONFIGURATION.
  *
- * ALLE suchmaschinenrelevanten Texte und Daten werden hier gepflegt
- * (Title, Descriptions, Geschäftsdaten, Bedienregion, Angebote). Daraus
- * werden gespeist:
- *  - die Meta-/OG-Tags in `index.html` (Platzhalter `__SEO_*__`, ersetzt durch
- *    das Vite-Plugin in `vite.config.ts` für Dev und `scripts/prerender.mjs`
- *    pro Route beim Build)
- *  - das JSON-LD (LocalBusiness, WebSite, FAQPage) im prerendered HTML
- *  - die `sitemap.xml`
+ * ALL search-relevant strings and data are maintained here (titles,
+ * descriptions, business data, service area, offers). They feed:
+ *  - the meta/OG tags in `index.html` (`__SEO_*__` placeholders, replaced
+ *    by the Vite plugin in `vite.config.ts` for dev and by
+ *    `scripts/prerender.mjs` per route at build time)
+ *  - the JSON-LD (LocalBusiness, WebSite, FAQPage) in the prerendered HTML
+ *  - the `sitemap.xml`
  *
- * FAQ-Inhalte liegen NICHT hier, sondern in `src/content/faq.ts` (eine Quelle
- * für UI + Schema); diese Datei importiert sie nur.
+ * FAQ content does NOT live here but in `src/content/faq.ts` (one source
+ * for UI + schema); this file only imports it.
  *
- * ACHTUNG: Nur Relative Imports und kein React in dieser Datei — sie wird aus
- * `vite.config.ts` (Node-Kontext, ohne `@`-Alias) geladen.
+ * NOTE: relative imports only and no React in this file — it is loaded
+ * from `vite.config.ts` (Node context, without the `@` alias).
+ * NOTE: the *values* (titles, descriptions, schema text) are website
+ * content and stay German per the language policy (see AGENTS.md); only
+ * comments/docs are English.
  */
 import { FAQ_ENTRIES, faqPlainText } from './content/faq';
 
 export const SEO = {
   siteName: 'Zum Wohl Mobil',
-  /** Production-Domain ohne Slash am Ende. */
+  /** Production domain without a trailing slash. */
   domain: 'https://zumwohlmobil.de',
-  /** Share-Bild (root-relativ); wird für OG/Twitter absolut gemacht. */
+  /** Share image (root-relative); made absolute for OG/Twitter. */
   ogImage: '/First_page.jpeg',
   logo: '/Logo.svg',
 
   /**
-   * Geschäftsdaten — MÜSSEN exakt mit dem Impressum übereinstimmen (NAP).
-   * Bei Änderungen im Impressum hier synchron mitziehen.
+   * Business data — MUST match the Impressum exactly (NAP consistency).
+   * When the Impressum changes, update here in the same commit.
    */
   business: {
     owner: 'Claire Turi',
     streetAddress: 'Helenenstraße 38',
     postalCode: '90419',
-    /** Basis/Heimatstadt — Anker der lokalen SEO-Strategie. */
+    /** Base/home city — anchor of the local SEO strategy. */
     city: 'Nürnberg',
     country: 'DE',
-    /** Internationale Schreibweise (E.164) für schema.org. */
+    /** International format (E.164) for schema.org. */
     phone: '+49 177 4471833',
     email: 'zumwohlmobil@gmail.com',
     instagram: 'https://www.instagram.com/zumwohlmobil/',
     priceRange: '€€',
     /**
-     * Primäre Bedienregion („Nürnberg first“): Städte der Metropolregion,
-     * in denen die Anfahrt bis 50 km inklusive ist.
+     * Primary service area („Nürnberg first“): metro-region cities where
+     * travel up to 50 km is included.
      */
     areaServedCities: ['Nürnberg', 'Fürth', 'Erlangen', 'Schwabach'],
-    /** Sekundär: deutschlandweit buchbar, Anfahrt ab 51 km kostenpflichtig. */
+    /** Secondary: bookable Germany-wide, travel beyond 51 km charged. */
     areaServedCountry: 'Deutschland',
     areaServedNote:
       'Anfahrt bis 50 km inklusive; jeder weitere Kilometer 3,00 €. Deutschlandweit auf Anfrage.'
   },
 
   /**
-   * Pauschalpreise (Kleinunternehmerin § 19 UStG — niemals „inkl. MwSt.“
-   * schreiben!). Gleiche Werte wie die PricingTierCards in App.tsx; bei
-   * Preisänderungen BEIDE Stellen aktualisieren.
+   * Flat-rate prices (small business under § 19 UStG — never write
+   * „inkl. MwSt.“!). Same values as the PricingTierCards in App.tsx; when
+   * prices change, update BOTH places.
    */
   offers: [
     { guests: 'bis 30 Personen', price: '250.00' },
@@ -66,16 +68,17 @@ export const SEO = {
 } as const;
 
 export interface RouteSeo {
-  /** Routenpfad, z. B. `/impressum` */
+  /** Route path, e.g. `/impressum` */
   path: string;
   title: string;
   description: string;
 }
 
 /**
- * Meta-Daten pro Route. Strategie „Nürnberg first, Deutschland möglich“:
- * Startseite auf lokale Suchbegriffe optimiert („Mobile Bar mieten Nürnberg“),
- * Anlass-Keywords (Hochzeiten, Geburtstage, Firmenfeiern) in der Description.
+ * Meta data per route. Strategy „Nürnberg first, Deutschland möglich“:
+ * home page optimized for local search terms („Mobile Bar mieten Nürnberg“),
+ * occasion keywords (Hochzeiten, Geburtstage, Firmenfeiern) in the
+ * description. Values are German website content — do not translate.
  */
 export const ROUTE_SEO: RouteSeo[] = [
   {
@@ -107,9 +110,9 @@ export const ROUTE_SEO: RouteSeo[] = [
 ];
 
 export interface ResolvedRouteSeo extends RouteSeo {
-  /** Absolute URL für canonical/og:url. */
+  /** Absolute URL for canonical/og:url. */
   canonical: string;
-  /** Absolutes OG-Bild. */
+  /** Absolute OG image URL. */
   ogImage: string;
 }
 
@@ -122,11 +125,11 @@ export function resolveRouteSeo(path: string): ResolvedRouteSeo {
   };
 }
 
-/** Alle prerendernden Pfade (Reihenfolge = sitemap-Reihenfolge). */
+/** All paths to prerender (order = sitemap order). */
 export const ROUTE_PATHS: string[] = ROUTE_SEO.map((r) => r.path);
 
 /* ------------------------------------------------------------------ */
-/* JSON-LD (strukturierte Daten für Such- & AI-Antwortmaschinen)        */
+/* JSON-LD (structured data for search & AI answer engines)               */
 /* ------------------------------------------------------------------ */
 
 function buildWebSiteLd(): Record<string, unknown> {
@@ -210,8 +213,8 @@ function buildFaqLd(): Record<string, unknown> {
 }
 
 /**
- * JSON-LD-Blöcke pro Route. Nur die Startseite trägt das volle Programm
- * (WebSite + LocalBusiness + FAQPage); Rechtstexte bleiben clean.
+ * JSON-LD blocks per route. Only the home page carries the full set
+ * (WebSite + LocalBusiness + FAQPage); legal pages stay clean.
  */
 export function buildJsonLd(path: string): Record<string, unknown>[] | null {
   if (path !== '/') return null;
