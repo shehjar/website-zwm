@@ -77,7 +77,7 @@ rental business ("Zum Wohl Mobil", Claire & Haider).
    (js/css/html) must exist in `dist/` (build only catches code errors, NOT
    missing `public/` files).
 5. Prerender check: `dist/index.html` contains real content (e.g.
-   `grep -c Nürnberg dist/index.html` > 0), `dist/{impressum,datenschutz,agb}/index.html`
+   `grep -c Nürnberg dist/index.html` > 0), `dist/{impressum,datenschutz,agb}.html`
    exist with route-specific `<title>`, and `dist/sitemap.xml` is present.
 6. `npm run dev` smoke test: `/`, `/impressum`, `/datenschutz`, `/agb`,
    pricing-tier → form prefill, form submit flow.
@@ -125,9 +125,10 @@ rental business ("Zum Wohl Mobil", Claire & Haider).
 - **Local strategy:** „Nürnberg first, Deutschland möglich" — primary
   keywords target the metro region (Nürnberg/Fürth/Erlangen/Schwabach,
   Anfahrt ≤50 km), deutschlandweit is the secondary message (3,00 €/km).
-- Known local-only quirk: `vite preview` serves the home fallback for
-  `/impressum` (no trailing slash); Netlify serves the prerendered
-  `dist/<route>/index.html` first — `_redirects` only catches misses.
+- **Flat prerendered files:** legal routes are written as
+  `dist/<route>.html` (not directories) so Netlify serves `/impressum`
+  directly via Pretty URLs (200, no 301 to `/impressum/`) — served URL and
+  canonical stay identical. `_redirects` only catches true misses.
 - **Owner to-dos (off-site, biggest local lead lever):** create the Google
   Business Profile (service-area business; categories Bar/Eventagentur/
   Caterer; NAP identical to Impressum; postcard verification takes days),

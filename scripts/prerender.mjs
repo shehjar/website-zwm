@@ -13,7 +13,7 @@
  *  2. `dist/index.html` als Template laden (enthält noch `__SEO_*__`-Tokens
  *     und die Marker `<!--app-head-->` / `<!--app-html-->`)
  *  3. Pro Route: HTML rendern, Meta-Tokens ersetzen, JSON-LD injizieren,
- *     nach `dist/<route>/index.html` schreiben
+ *     nach `dist/index.html` bzw. `dist/<route>.html` schreiben
  *  4. `dist/sitemap.xml` erzeugen, `dist-server/` aufräumen
  *
  * Alle SEO-Werte kommen aus `src/seo.ts` (über das SSR-Bundle) — hier wird
@@ -66,7 +66,10 @@ for (const path of server.ROUTE_PATHS) {
   const outFile =
     path === '/'
       ? resolve(distDir, 'index.html')
-      : resolve(distDir, path.replace(/^\//, ''), 'index.html');
+      : // Flache Datei statt Verzeichnis: Netlify serviert /impressum dann
+        // direkt aus impressum.html (Pretty URL, 200 ohne 301-Umleitung auf
+        // /impressum/) — kanonische URL und ausgelieferte URL bleiben gleich.
+        resolve(distDir, `${path.replace(/^\//, '')}.html`);
   await mkdir(dirname(outFile), { recursive: true });
   await writeFile(outFile, html);
   console.log(`prerender: ${path} → ${outFile.slice(root.length + 1)}`);
