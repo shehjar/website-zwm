@@ -1,22 +1,27 @@
 import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import App from './App.tsx';
-import { ImpressumPage } from './pages/ImpressumPage.tsx';
-import { DatenschutzPage } from './pages/DatenschutzPage.tsx';
-import { AgbPage } from './pages/AgbPage.tsx';
+import { createRoot, hydrateRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import { AppRoutes } from './routes.tsx';
 import './index.css';
 
-createRoot(document.getElementById('root')!).render(
+/**
+ * Die Route-Tabelle lebt in `src/routes.tsx` (eine Quelle für Client und
+ * Prerendering). In Produktion liefert der Build prerendered HTML aus
+ * (scripts/prerender.mjs) — dann wird hydratisiert statt neu gerendert,
+ * damit Crawler-Inhalt und erste sichtbare Sekunde identisch bleiben.
+ * Fällt das root-Div leer aus (z. B. Dev-Server), wird klassisch gemountet.
+ */
+const container = document.getElementById('root')!;
+const app = (
   <StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/impressum" element={<ImpressumPage />} />
-        <Route path="/datenschutz" element={<DatenschutzPage />} />
-        <Route path="/agb" element={<AgbPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      <AppRoutes />
     </BrowserRouter>
   </StrictMode>
 );
+
+if (container.childElementCount > 0) {
+  hydrateRoot(container, app);
+} else {
+  createRoot(container).render(app);
+}

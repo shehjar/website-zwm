@@ -89,7 +89,14 @@ export function InquiryForm({
   });
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
-  const today = new Date().toISOString().slice(0, 10);
+  // Heutiges Datum (min-Grenze der Terminauswahl): bewusst client-seitig per
+  // Effect gesetzt — im prerendered HTML (SSG) wäre ein Render-Zeitpunkt
+  // eingefroren und das Datum nach dem Build veraltet. '' bis zum Mount ist
+  // unkritisch: validiert wird erst beim Submit (dann ist der Effekt gelaufen).
+  const [today, setToday] = useState('');
+  useEffect(() => {
+    setToday(new Date().toISOString().slice(0, 10));
+  }, []);
   const lastPrefill = useRef(initialGuests);
 
   // Pre-fill only the guest count when a pricing tier is clicked; keep all other input.

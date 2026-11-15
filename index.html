@@ -4,14 +4,31 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/Logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zum Wohl Mobil – Mobile Bar für besondere Momente</title>
-    <meta
-      name="description"
-      content="Mobile Aperol Spritz Bar für Hochzeiten, Geburtstage und Feste. Wagenmiete & Dekoration inklusive – jetzt unverbindlich anfragen."
-    />
+    <!-- JSON-LD (LocalBusiness, WebSite, FAQPage) wird beim Prerendering
+         hier injiziert; Werte ausschließlich aus src/seo.ts. -->
+    <!--app-head-->
+    <!-- Die __SEO_*__-Platzhalter ersetzt in Dev das Vite-Plugin
+         "seo-tokens-dev" (Home-Meta aus src/seo.ts) und beim Build
+         scripts/prerender.mjs pro Route. Nicht hartkodieren! -->
+    <title>__SEO_TITLE__</title>
+    <meta name="description" content="__SEO_DESCRIPTION__" />
+    <link rel="canonical" href="__SEO_CANONICAL__" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Zum Wohl Mobil" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:title" content="__SEO_TITLE__" />
+    <meta property="og:description" content="__SEO_DESCRIPTION__" />
+    <meta property="og:url" content="__SEO_CANONICAL__" />
+    <meta property="og:image" content="__SEO_OG_IMAGE__" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="__SEO_TITLE__" />
+    <meta name="twitter:description" content="__SEO_DESCRIPTION__" />
+    <meta name="twitter:image" content="__SEO_OG_IMAGE__" />
   </head>
   <body>
-    <div id="root"></div>
+    <!-- Prerendered HTML landet zwischen diesen Kommentaren bzw. im
+         root-Div; der Client hydratisiert es (hydrateRoot in main.tsx). -->
+    <div id="root"><!--app-html--></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
