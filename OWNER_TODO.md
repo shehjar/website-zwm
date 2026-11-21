@@ -27,7 +27,7 @@ you start, the better.**
   - Type: **service-area business** (no storefront for customer visits)
   - Address: **Helenenstraße 38, 90419 Nürnberg** — MUST match the
     Impressum exactly (NAP consistency)
-  - Phone: **01774471833** (as in the Impressum)
+  - Phone: **+49 (0) 177 4471833** (as in the Impressum)
   - Website: **https://zumwohlmobil.de**
   - Service area: Nürnberg, Fürth, Erlangen, Schwabach + radius (~50 km);
     mention "deutschlandweit auf Anfrage" in the description
@@ -59,7 +59,11 @@ you start, the better.**
     see the backlog in AGENTS.md)
 - [ ] Collect real guest testimonials → flip `SHOW_TESTIMONIALS` in
     `src/App.tsx` to `true` (only then! invented reviews = UWG legal risk)
-- [ ] Provide the final eRecht24 texts for Impressum (check USt-IdNr) + AGB
+- [x] Provide the final eRecht24 text for Impressum (2026-11-21 — owner
+      text received; agent corrections: § 19 UStG note kept instead of the
+      invalid placeholder USt-IdNr, phone confirmed as 0177 4471833, fax
+      line dropped, e-mail typo fixed)
+- [ ] Provide the final eRecht24 text for AGB
 - [ ] Fix two typos in the Canva price list and re-export (replace
     `public/Preisliste.pdf`, keep it compressed — current file is 235 KB):
     „INDUVIDUELLES ANGEBOT" → „INDIVIDUELLES ANGEBOT";

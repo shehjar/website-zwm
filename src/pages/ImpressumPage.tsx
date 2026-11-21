@@ -1,25 +1,24 @@
-import { LegalPage, PlaceholderNotice } from './LegalPage';
+import { LegalPage } from './LegalPage';
 
 /**
- * Impressum — PARTIAL DRAFT.
- * Identity data taken from the final privacy policy (owner statement,
- * 2026-10-25): Claire Turi is the sole operator.
- * VAT question settled: small business under § 19 UStG, no VAT ID
- * (see the "Umsatzsteuer" section). As soon as the final eRecht24
- * Impressum text arrives, replace this page 1:1 and remove the
- * PlaceholderNotice.
+ * Impressum — FINAL (owner-provided eRecht24 text, 2026-11-21).
+ * Published with owner-approved corrections to the generated text:
+ *  - E-mail typo fixed (double dot → zumwohlmobil@gmail.com).
+ *  - Phone confirmed as 0177 4471833, displayed as +49 (0) 177 4471833
+ *    (the generated text had 0176 — wrong digit).
+ *  - Telefax line dropped (not required under § 5 DDG).
+ *  - "Umsatzsteuer-ID" section (invalid generator placeholder) replaced
+ *    by the § 19 UStG note: Claire is a Kleinunternehmerin, no VAT ID.
+ * NAP data must stay in sync with src/seo.ts (see AGENTS.md).
  */
 export function ImpressumPage() {
   return (
     <LegalPage title="Impressum" subtitle="Angaben gemäß § 5 DDG">
-      <PlaceholderNotice />
-
       <section>
-        <h2>Anbieter</h2>
         <p>
-          Zum Wohl Mobil
-          <br />
           Claire Turi
+          <br />
+          Zum Wohl Mobil
           <br />
           Helenenstraße 38
           <br />
@@ -30,21 +29,10 @@ export function ImpressumPage() {
       <section>
         <h2>Kontakt</h2>
         <p>
-          Telefon: 01774471833
+          Telefon: +49 (0) 177 4471833
           <br />
           E-Mail:{' '}
           <a href="mailto:zumwohlmobil@gmail.com">zumwohlmobil@gmail.com</a>
-        </p>
-      </section>
-
-      <section>
-        <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
-        <p>
-          Claire Turi
-          <br />
-          Helenenstraße 38
-          <br />
-          90419 Nürnberg
         </p>
       </section>
 
@@ -57,14 +45,49 @@ export function ImpressumPage() {
       </section>
 
       <section>
-        <h2>EU-Streitschlichtung</h2>
+        <h2>Aufsichtsbehörde</h2>
         <p>
-          Die Europäische Kommission stellt eine Plattform zur
-          Online-Streitbeilegung (OS) bereit. Wir sind nicht bereit und nicht
-          verpflichtet, an Streitbeilegungsverfahren vor einer
-          Verbraucherschlichtungsstelle teilzunehmen.
+          Stadt Nürnberg - Ordnungsamt
+          <br />
+          Innerer Laufer Pl. 3,
+          <br />
+          90403 Nürnberg
+        </p>
+        <p>
+          <a
+            href="https://www.nuernberg.de/internet/ordnungsamt/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            https://www.nuernberg.de/internet/ordnungsamt/
+          </a>
         </p>
       </section>
+
+      <section>
+        <h2>Redaktionell verantwortlich</h2>
+        <p>
+          Shehjar Kaul
+          <br />
+          Am Stadtpark 41
+          <br />
+          90409 Nürnberg
+        </p>
+      </section>
+
+      <section>
+        <h2>
+          Verbraucher&shy;streit&shy;beilegung/Universal&shy;schlichtungs&shy;stelle
+        </h2>
+        <p>
+          Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren
+          vor einer Verbraucherschlichtungsstelle teilzunehmen.
+        </p>
+      </section>
+
+      <p>
+        Quelle: <a href="https://www.e-recht24.de">e-recht24.de</a>
+      </p>
     </LegalPage>
   );
 }
