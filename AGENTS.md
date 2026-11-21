@@ -98,6 +98,40 @@ that renders on the site is never translated to English.
   (site copy, price PDFs, future pages). Prices are Pauschalpreise; the
   § 19 UStG note lives in the Impressum only (section "Umsatzsteuer").
 - `.env` is gitignored and currently unused — never commit secrets or keys.
+- Human review policy: no merge without the owner's browser review
+  (`human-review` skill) and explicit approval — applies to EVERY change,
+  no exceptions (see "Human review policy" below).
+
+## Human review policy — one rule, no exceptions
+
+> **Every change — of any kind — is reviewed by the owner in the browser
+> (`human-review` skill) and explicitly approved BEFORE it is merged.**
+
+Scope: ALL changes, without exemption — pages, components, copy, design,
+assets, styles, SEO/FAQ content, config, scripts, dependencies, and docs
+(including AGENTS.md and OWNER_TODO.md themselves). There is no "too
+small", "typo fix", "docs only", "urgent", or "already agreed in chat"
+exemption. Specifically:
+
+- Approving a plan is NOT approving a merge.
+- Passing automated checks (typecheck/lint/build) is preparation for the
+  review, never a substitute for it.
+- Seeing text in chat is NOT reviewing the rendered result.
+- One PR touching several surfaces → review EVERY affected surface, not
+  just the headline change.
+- Any push after a review → re-review the final state before merging.
+
+How the review is opened (mechanics in "Deploy loop"):
+
+- Visitor-facing changes → the rendered pages on the local dev server,
+  every affected route (`/`, `/impressum`, `/datenschutz`, `/agb`, …).
+- Non-visual changes (config, scripts, docs) → the file itself via the
+  skill (Markdown renders) or a Markdown diff summary — so literally
+  every change has a reviewable surface.
+- The owner's edits carry across verbatim to the source; comments are
+  applied and re-reviewed until the owner says done.
+- Fallback if the skill/npx is unavailable: preview link + explicit chat
+  approval. The gate degrades, it is NEVER skipped.
 
 ## Verification checklist — run before every commit/merge
 
@@ -115,8 +149,20 @@ that renders on the site is never translated to English.
 
 ## Deploy loop
 
-- Work on a branch → `gh pr create` → review the Netlify preview URL →
-  merge (squash) to `main` → Netlify auto-deploys production.
+- Work on a branch → automated checks (Verification checklist) →
+  `gh pr create` → **human-review gate** (see "Human review policy"):
+  open every affected surface for the owner via the `human-review`
+  skill, apply their edits/comments, repeat until they are done →
+  **wait for explicit approval** → merge (squash) to `main` → Netlify
+  auto-deploys production → verify production and report.
+- Review mechanics: visitor-facing changes → `npm run dev` +
+  `npx -y human-review http://localhost:5173/<route>` for EVERY affected
+  route; docs/config/scripts → `npx -y human-review <file.md>` (Markdown
+  renders) or a Markdown diff summary. Localhost edits arrive as a batch
+  (`edits_saved: false`) — apply them verbatim to the source (TSX/MD),
+  never to rendered HTML; the dev server hot-reloads for the next round.
+- No direct pushes to `main` — every commit reaches production through
+  an owner-approved PR (docs-only status commits included).
 - Never deploy manually to production; never edit Netlify UI settings that
   contradict `netlify.toml` (build `npm run build`, publish `dist`, Node 20).
 - Rollback: Netlify UI "restore previous deploy", or `git revert` + push.

@@ -88,6 +88,12 @@ you start, the better.**
 
 ## ✅ Done
 
+- [x] 2026-11-21 — **Human review policy adopted** (AGENTS.md): every
+      change — code, content, design, config, docs — must be reviewed by
+      the owner in the browser (`human-review` skill) and explicitly
+      approved before merge. No direct pushes to `main`; plan approval
+      is not merge approval. The rule change itself is the first PR
+      reviewed under the new policy.
 - [x] 2026-11-21 — **Final AGB live on zumwohlmobil.de** (PR #14,
       squash-merged as a2eeb27, Netlify production deploy verified):
       owner-provided PDF terms published as HTML (14 sections) with
