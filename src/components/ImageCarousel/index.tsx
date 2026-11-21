@@ -5,6 +5,11 @@ export type ImageCarouselImage = {
   src: string;
   alt: string;
   caption?: string;
+  /** Optional small square thumbnail (used by thumbnail strips instead of the full image) */
+  thumbSrc?: string;
+  /** Intrinsic pixel dimensions — let the browser reserve the right ratio before load */
+  width?: number;
+  height?: number;
 };
 
 export type ImageCarouselAspect = 'video' | 'photo' | 'square' | 'portrait';
@@ -51,6 +56,7 @@ export function ImageCarousel({
   const trackRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(initialIndex);
   const [paused, setPaused] = useState(false);
+  const reportedIndex = useRef(initialIndex);
   const total = images.length;
 
   const scrollToIndex = useCallback(
@@ -65,8 +71,8 @@ export function ImageCarousel({
     [total]
   );
 
-  // Wrap instantané pour boucler : un saut rapide qui donne l'impression
-  // de continuer en boucle plutôt que de défiler en arrière.
+  // Instant wrap for looping: a quick jump that feels like continuing
+  // forward instead of scrolling all the way back.
   const goNext = useCallback(() => {
     const next = active + 1;
     scrollToIndex(next >= total ? 0 : next, next >= total ? 'instant' : 'smooth');
@@ -90,10 +96,13 @@ export function ImageCarousel({
         closest = i;
       }
     });
-    setActive((prev) => {
-      if (prev !== closest) onIndexChange?.(closest);
-      return closest;
-    });
+    // Notify outside the state updater: updaters must be pure (StrictMode
+    // double-invokes them, which would fire the callback twice).
+    if (closest !== reportedIndex.current) {
+      reportedIndex.current = closest;
+      onIndexChange?.(closest);
+    }
+    setActive(closest);
   }, [onIndexChange]);
 
   useEffect(() => {
@@ -241,6 +250,8 @@ function Slide({ image, aspect, rounded }: SlideProps) {
       <img
         src={image.src}
         alt={image.alt}
+        width={image.width}
+        height={image.height}
         loading="lazy"
         draggable={false}
         onLoad={() => setStatus('loaded')}

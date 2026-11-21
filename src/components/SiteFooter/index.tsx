@@ -70,7 +70,10 @@ export function SiteFooter({
             </ul>
           </nav>
           <p className="text-xs text-text">
-            © {year} Zum Wohl Mobil. Alle Rechte vorbehalten.
+            {/* The prerendered HTML carries the build year; the client renders
+                the current year. The mismatch is expected (once a year) —
+                suppress the warning and let React patch the text. */}
+            © <span suppressHydrationWarning>{year}</span> Zum Wohl Mobil. Alle Rechte vorbehalten.
           </p>
         </div>
       </div>

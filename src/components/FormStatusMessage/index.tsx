@@ -1,5 +1,5 @@
 import React from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import {
   AlertCircleIcon,
   CheckCircle2Icon,
@@ -73,7 +73,7 @@ export function FormStatusMessage({
   return (
     <AnimatePresence initial={false}>
       {visible &&
-      <motion.div
+      <m.div
         key={status}
         role={isError ? 'alert' : 'status'}
         aria-live={isError ? 'assertive' : 'polite'}
@@ -115,7 +115,7 @@ export function FormStatusMessage({
               <XIcon className="h-4 w-4" aria-hidden="true" />
             </button>
         }
-        </motion.div>
+        </m.div>
       }
     </AnimatePresence>);
 

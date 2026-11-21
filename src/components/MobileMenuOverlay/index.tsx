@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useId, useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import { MenuIcon, XIcon } from 'lucide-react';
 import { PillButton } from '../PillButton';
 export type MobileMenuLink = {
@@ -125,14 +125,14 @@ export function MobileMenuOverlay({
         aria-haspopup="dialog"
         aria-expanded={open}
         aria-controls={navId}
-        className="inline-flex h-11 w-11 items-center justify-center rounded-full text-[#2F3B33] transition-colors hover:bg-[#E3EADF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5E7A63] focus-visible:ring-offset-2 focus-visible:ring-offset-[#F4F6F1]">
+        className="inline-flex h-11 w-11 items-center justify-center rounded-full text-menu-text transition-colors hover:bg-menu-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-menu-accent focus-visible:ring-offset-2 focus-visible:ring-offset-menu-offset">
         
         <MenuIcon className="h-6 w-6" strokeWidth={1.75} aria-hidden="true" />
       </button>
 
       <AnimatePresence>
         {open &&
-        <motion.div
+        <m.div
           ref={dialogRef}
           key="mobile-menu-overlay"
           role="dialog"
@@ -142,7 +142,7 @@ export function MobileMenuOverlay({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2, ease: 'easeOut' }}
-          className="fixed inset-0 z-50 flex flex-col bg-[#EEF2EB] text-[#2F3B33]">
+          className="fixed inset-0 z-50 flex flex-col bg-menu-bg text-menu-text">
           
             <h2 id={titleId} className="sr-only">
               Hauptmenü
@@ -161,7 +161,7 @@ export function MobileMenuOverlay({
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Menü schließen"
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full text-[#2F3B33] transition-colors hover:bg-[#DDE6D8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5E7A63] focus-visible:ring-offset-2 focus-visible:ring-offset-[#EEF2EB]">
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full text-menu-text transition-colors hover:bg-menu-close-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-menu-accent focus-visible:ring-offset-2 focus-visible:ring-offset-menu-bg">
               
                 <XIcon className="h-6 w-6" strokeWidth={1.75} aria-hidden="true" />
               </button>
@@ -172,7 +172,7 @@ export function MobileMenuOverlay({
             aria-label="Hauptnavigation"
             className="flex min-h-0 flex-1 flex-col overflow-y-auto px-6 pb-12 pt-4 sm:px-10">
             
-              <motion.ul
+              <m.ul
               className="my-auto flex w-full flex-col gap-2 sm:gap-3"
               initial="hidden"
               animate="visible"
@@ -184,7 +184,7 @@ export function MobileMenuOverlay({
                 {links.map((link) => {
                 const isActive = link.href === activeHref;
                 return (
-                  <motion.li
+                  <m.li
                     key={link.href}
                     variants={{
                       hidden: { opacity: 0, y: 12 },
@@ -198,27 +198,27 @@ export function MobileMenuOverlay({
                         onNavigate?.(link, e);
                         setOpen(false);
                       }}
-                      className={`group relative inline-flex items-center gap-4 rounded-md py-2 pr-2 font-['Jost',sans-serif] text-3xl font-medium uppercase tracking-[0.12em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5E7A63] focus-visible:ring-offset-4 focus-visible:ring-offset-[#EEF2EB] sm:text-4xl ${
-                      isActive ? 'text-[#2F3B33]' : 'text-[#2F3B33]/70 hover:text-[#2F3B33]'}`
+                      className={`group relative inline-flex items-center gap-4 rounded-md py-2 pr-2 font-['Jost',sans-serif] text-3xl font-medium uppercase tracking-[0.12em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-menu-accent focus-visible:ring-offset-4 focus-visible:ring-offset-menu-bg sm:text-4xl ${
+                      isActive ? 'text-menu-text' : 'text-menu-text/70 hover:text-menu-text'}`
                       }>
                       
                         <span
                         aria-hidden="true"
                         className={`h-[2px] transition-all duration-200 ${
                         isActive ?
-                        'w-8 bg-[#5E7A63]' :
-                        'w-0 bg-[#5E7A63]/60 group-hover:w-4'}`
+                        'w-8 bg-menu-accent' :
+                        'w-0 bg-menu-accent/60 group-hover:w-4'}`
                         } />
                       
                         {link.label}
                       </a>
-                    </motion.li>);
+                    </m.li>);
 
               })}
-              </motion.ul>
+              </m.ul>
             </nav>
 
-            <div className="shrink-0 border-t border-[#DDE6D8] px-6 pb-8 pt-5 sm:px-10">
+            <div className="shrink-0 border-t border-menu-border px-6 pb-8 pt-5 sm:px-10">
               <PillButton
                 href="#kontakt"
                 size="lg"
@@ -229,7 +229,7 @@ export function MobileMenuOverlay({
                 Jetzt anfragen
               </PillButton>
             </div>
-          </motion.div>
+          </m.div>
         }
       </AnimatePresence>
     </div>);

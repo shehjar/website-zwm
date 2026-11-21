@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { GlassWaterIcon } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
 
@@ -64,11 +63,11 @@ export function RecipeCard({
   }
 
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.25, ease: 'easeOut' }}
-      className={twMerge('group flex w-full max-w-sm flex-col overflow-hidden rounded-[32px]', surface, className)}>
+    // CSS-only entrance animation (keyframes `card-in` in index.css): the
+    // card is visible by default in prerendered HTML — no JS required —
+    // and prefers-reduced-motion disables it globally.
+    <article
+      className={twMerge('group flex w-full max-w-sm animate-[card-in_0.25s_ease-out] flex-col overflow-hidden rounded-[32px]', surface, className)}>
       
       <div className={twMerge('relative aspect-[3/4] w-full overflow-hidden', placeholder)}>
         {imageSrc ?
@@ -106,6 +105,6 @@ export function RecipeCard({
           )}
         </ul>
       </div>
-    </motion.article>);
+    </article>);
 
 }
