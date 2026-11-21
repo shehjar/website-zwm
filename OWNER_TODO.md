@@ -63,7 +63,11 @@ you start, the better.**
       text received; agent corrections: § 19 UStG note kept instead of the
       invalid placeholder USt-IdNr, phone confirmed as 0177 4471833, fax
       line dropped, e-mail typo fixed)
-- [ ] Provide the final eRecht24 text for AGB
+- [x] Provide the final AGB text (2026-11-21 — owner PDF received; agent
+      corrections: §10 liability wording fixed, §3 typo fixed; published
+      as HTML without PDF download because the source PDF contains an
+      outdated phone number — re-export a corrected PDF if a download
+      link is wanted later)
 - [ ] Fix two typos in the Canva price list and re-export (replace
     `public/Preisliste.pdf`, keep it compressed — current file is 235 KB):
     „INDUVIDUELLES ANGEBOT" → „INDIVIDUELLES ANGEBOT";
