@@ -34,6 +34,15 @@ export const FAQ_ENTRIES: FaqEntry[] = [
       'Die Anfahrt ist bis 50 km inklusive, für jeden weiteren Kilometer berechnen wir 3,00 €.'
   },
   {
+    question: 'Kann ich zusätzliche Dekoration dazubuchen?',
+    answer:
+      'Ja – zusätzlich zur **Dekoration, die in jeder Pauschale bereits enthalten ist**, ' +
+      'bieten wir weitere Dekoelemente: eine **Regalleiter für 20,00 €**, **Obstkisten für ' +
+      '15,00 €** (im Set zu drei Stück – der Preis gilt für alle drei Kisten zusammen) und ' +
+      'eine **Palette für 10,00 €**, die wir auf Wunsch individuell und passend zu eurem ' +
+      'Anlass beschriften. Weitere Bilder und Inspirationen findest du unter „Unsere Events“.'
+  },
+  {
     question: 'Gibt es auch alkoholfreie Getränke?',
     answer:
       'Ja – alle unsere Getränke gibt es auch als **alkoholfreie Variante**. Du kannst also jeden ' +

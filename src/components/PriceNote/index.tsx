@@ -14,7 +14,8 @@ export type PriceNoteProps = {
 
 export function PriceNote({
   items = [
-  'Standort: Nürnberg – Anfahrt inklusive bis 50 km, danach 3,00 € pro km'],
+  'Standort: Nürnberg – Anfahrt inklusive bis 50 km, danach 3,00 € pro km',
+  'Nur Wagen mieten (ohne Getränke): 120,00 € – Dekoration optional + 30,00 €'],
 
   children,
   separator = '·',
