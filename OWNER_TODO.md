@@ -84,6 +84,17 @@ you start, the better.**
 
 ## ✅ Done
 
+- [x] 2026-11-21 — **Final Impressum live on zumwohlmobil.de** (PR #13,
+      squash-merged as 5c00bc5, Netlify production deploy verified):
+      owner-provided eRecht24 text published with owner-approved
+      corrections — § 19 UStG Kleinunternehmer note kept (no USt-IdNr;
+      the generator's `DE13ZZZ…` placeholder was invalid), phone
+      confirmed as 0177 4471833 and displayed as +49 (0) 177 4471833
+      (also synced in the Datenschutz), Telefax line dropped, e-mail
+      double-dot typo fixed. New sections: Aufsichtsbehörde (Stadt
+      Nürnberg – Ordnungsamt) and Redaktionell verantwortlich (Shehjar
+      Kaul). PlaceholderNotice removed; only AGB remains a placeholder.
+      Open owner task above: provide the final AGB text.
 - [x] 2026-11-21 — New price list **live on zumwohlmobil.de** (PR #10,
       squash-merged as 86e22d6, Netlify production deploy verified):
       download serves the new 2-page `Preisliste.pdf` (235 KB,
