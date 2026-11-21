@@ -2,8 +2,8 @@ import React from 'react';
 import { FileTextIcon } from 'lucide-react';
 import { PillButton } from '../PillButton';
 
-/** Current price list (A4). Swap for the real PDF once exported from Canva. */
-export const PRICE_LIST_URL = '/Preisliste_fur_PDF.pdf';
+/** Current price list (A4, 2 pages) — exported from Canva, compressed via Ghostscript. */
+export const PRICE_LIST_URL = '/Preisliste.pdf';
 
 
 export interface DownloadCalloutProps {
@@ -24,7 +24,7 @@ export function DownloadCallout({
   buttonLabel = 'Herunterladen',
   href = PRICE_LIST_URL,
   fileName = 'Zum-Wohl-Mobil-Preisliste.pdf',
-  meta = 'Preisliste · A4',
+  meta = 'Preisliste · A4 · 2 Seiten',
   className = ''
 }: DownloadCalloutProps) {
   return (
