@@ -60,6 +60,15 @@ you start, the better.**
 - [ ] Collect real guest testimonials → flip `SHOW_TESTIMONIALS` in
     `src/App.tsx` to `true` (only then! invented reviews = UWG legal risk)
 - [ ] Provide the final eRecht24 texts for Impressum (check USt-IdNr) + AGB
+- [ ] Fix two typos in the Canva price list and re-export (replace
+    `public/Preisliste.pdf`, keep it compressed — current file is 235 KB):
+    „INDUVIDUELLES ANGEBOT" → „INDIVIDUELLES ANGEBOT";
+    „Fahrtkosten im den Getränkepauschalen" → „Fahrtkosten in den
+    Getränkepauschalen". Tell the agent once the new export is in place.
+- [ ] Provide photos of the decor add-ons (Regalleiter, Obstkisten,
+    Palette) — WebP, ≤2× display size — so the „Weitere Dekoelemente"
+    section can show real images. The price list PDF promises pictures
+    on the homepage; until then the section links to the events gallery.
 
 ---
 

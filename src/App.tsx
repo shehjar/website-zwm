@@ -14,6 +14,8 @@ import { ProcessStep } from '@/components/ProcessStep';
 import type { ImageCarouselImage } from '@/components/ImageCarousel';
 import { PricingTierCard } from '@/components/PricingTierCard';
 import { PriceNote } from '@/components/PriceNote';
+import { AddOnPricePanel } from '@/components/AddOnPricePanel';
+import type { AddOnPriceItem } from '@/components/AddOnPricePanel';
 import { InfoTextBlock } from '@/components/InfoTextBlock';
 import { RecipeCard } from '@/components/RecipeCard';
 import type { RecipeIngredient } from '@/components/RecipeCard';
@@ -100,6 +102,22 @@ const DRINKS = [
     tag: 'Würzig',
     imageSrc: '/images/pearfect-spritz.jpg',
     ingredients: ING('Aperol', 'Prosecco', 'Soda', 'Birnensaft', 'Zimt', 'Birne')
+  }
+];
+
+// Decor add-ons from the current price list (page 2). Basic decoration is
+// already included in every Getränkepauschale — these are optional extras.
+const DECOR_ADD_ONS: AddOnPriceItem[] = [
+  { label: 'Regalleiter', price: '20,00 €' },
+  {
+    label: 'Obstkisten',
+    price: '15,00 €',
+    description: 'Im Set zu drei Stück – der Preis gilt für alle drei Kisten zusammen.'
+  },
+  {
+    label: 'Palette',
+    price: '10,00 €',
+    description: 'Auf Wunsch individuell und passend zu eurem Anlass beschriftet.'
   }
 ];
 
@@ -256,6 +274,15 @@ export default function App() {
               <PricingTierCard custom onSelect={selectTier} />
             </div>
             <PriceNote />
+
+            <div className="mx-auto mt-10 max-w-3xl">
+              <AddOnPricePanel
+                heading="Weitere Dekoelemente"
+                description="Zusätzlich zur Dekoration, die in jeder Getränkepauschale schon enthalten ist – einfach dazubuchen."
+                items={DECOR_ADD_ONS}
+                footnote="Weitere Bilder und Inspirationen zu unserer Dekoration findest du oben unter „Unsere Events“."
+              />
+            </div>
 
             <div className="mx-auto mt-10 max-w-3xl">
               <DownloadCallout
