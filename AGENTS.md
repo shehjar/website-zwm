@@ -21,7 +21,8 @@ rental business ("Zum Wohl Mobil", Claire & Haider).
   hand-edit; component maps for assets live in `BotanicalDecoration` /
   `WatercolorBlot` (WebP files in `public/`).
 - `public/` — static assets, referenced by root-relative URLs (`/images/…`).
-- Routing: `src/main.tsx` (BrowserRouter); SPA fallback via `public/_redirects`;
+- Routing: `src/main.tsx` (BrowserRouter); 404 catch-all via `public/_redirects`
+  (`/* → /404.html 404`, branded German page);
   build config in `netlify.toml`, Node pinned by `.nvmrc`.
 
 ## Conventions
