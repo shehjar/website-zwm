@@ -32,6 +32,7 @@ import { DownloadCallout } from '@/components/DownloadCallout';
 import { TornEdgeImage } from '@/components/TornEdgeImage';
 import { PageBackdrop } from '@/components/PageBackdrop';
 import { useActiveSection } from '@/hooks/useActiveSection';
+import { SEO } from '@/seo';
 
 const NAV_LINKS = [
   { label: 'Start', href: '#start' },
@@ -42,41 +43,66 @@ const NAV_LINKS = [
   { label: 'Kontakt', href: '#kontakt' }
 ];
 
-const HERO_IMAGE = '/First_page.jpeg';
+// Module-level constant: a stable array identity keeps the useActiveSection
+// effect from re-subscribing its scroll listeners on every render.
+const SECTION_IDS = NAV_LINKS.map((l) => l.href.replace('#', ''));
+
+const HERO_IMAGE = SEO.heroImage;
 
 const CAROUSEL_IMAGES: ImageCarouselImage[] = [
   {
-    src: '/carousel-images/DSC08902.jpg',
+    src: '/carousel-images/DSC08902.webp',
+    thumbSrc: '/carousel-images/thumbs/DSC08902.webp',
+    width: 1202,
+    height: 1800,
     alt: 'Mobile Bar mit Lichterketten bei einer Gartenparty',
     caption: 'Unsere mobile Bar im Garten'
   },
   {
-    src: '/carousel-images/DSC09082.jpg',
+    src: '/carousel-images/DSC09082.webp',
+    thumbSrc: '/carousel-images/thumbs/DSC09082.webp',
+    width: 1202,
+    height: 1800,
     alt: 'Getränkespender mit Aperol Spritz und Eukalyptus',
     caption: 'Frisch gezapfte Drinks'
   },
   {
-    src: '/carousel-images/DSC08942.jpg',
+    src: '/carousel-images/DSC08942.webp',
+    thumbSrc: '/carousel-images/thumbs/DSC08942.webp',
+    width: 1202,
+    height: 1800,
     alt: 'Hochzeitsgäste stoßen mit Sekt an',
     caption: 'Anstoßen mit den Gästen'
   },
   {
-    src: '/carousel-images/DSC08950.jpg',
+    src: '/carousel-images/DSC08950.webp',
+    thumbSrc: '/carousel-images/thumbs/DSC08950.webp',
+    width: 1202,
+    height: 1800,
     alt: 'Frisch gemixte Spritz-Cocktails',
     caption: 'Frisch gemixte Drinks'
   },
   {
-    src: '/carousel-images/DSC08982.jpg',
+    src: '/carousel-images/DSC08982.webp',
+    thumbSrc: '/carousel-images/thumbs/DSC08982.webp',
+    width: 1202,
+    height: 1800,
     alt: 'Frische Zutaten für Spritz-Kreationen',
     caption: 'Frische Zutaten'
   },
   {
-    src: '/carousel-images/DSC09241.jpg',
+    src: '/carousel-images/DSC09241.webp',
+    thumbSrc: '/carousel-images/thumbs/DSC09241.webp',
+    width: 1202,
+    height: 1800,
     alt: 'Mobile Bar auf einem Sommerfest',
     caption: 'Sommerfest im Grünen'
   },
   {
-    src: '/carousel-images/DSC09275.jpg',
+    src: '/carousel-images/DSC09275.webp',
+    thumbSrc: '/carousel-images/thumbs/DSC09275.webp',
+    width: 1202,
+    height: 1800,
     alt: 'Gäste feiern an der mobilen Bar',
     caption: 'Gute Laune inklusive'
   }
@@ -156,7 +182,7 @@ const TESTIMONIALS: Testimonial[] = [
 
 export default function App() {
   const [guests, setGuests] = useState<number | null | undefined>(undefined);
-  const activeHref = useActiveSection(NAV_LINKS.map((l) => l.href.replace('#', '')));
+  const activeHref = useActiveSection(SECTION_IDS);
 
   const selectTier = (tier: { guests: number | null }) => {
     setGuests(tier.guests);
@@ -188,6 +214,8 @@ export default function App() {
             subline="Spritzig unterwegs aus Nürnberg – für Hochzeiten, Geburtstage und Firmenfeiern in Franken und ganz Deutschland."
             imageSrc={HERO_IMAGE}
             imageAlt="Unsere mobile Aperol-Spritz-Bar mit Lampions und Getränkespendern im Garten"
+            imageWidth={1086}
+            imageHeight={1448}
           />
         </section>
 

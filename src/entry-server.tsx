@@ -18,6 +18,7 @@ import {
   buildSitemapXml,
   resolveRouteSeo,
   ROUTE_PATHS,
+  SEO,
   type ResolvedRouteSeo
 } from './seo';
 
@@ -35,6 +36,16 @@ export function renderRoute(path: string): string {
 /** Resolved meta data (title, description, canonical, ogImage) per route. */
 export function getRouteSeo(path: string): ResolvedRouteSeo {
   return resolveRouteSeo(path);
+}
+
+/**
+ * Route-specific resource hints for the <head>. Only the home page has a
+ * hero photo, so only it preloads the LCP image (legal pages would waste
+ * the fetch). Injected at the `<!--app-head-->` marker by prerender.mjs.
+ */
+export function getHeadLinks(path: string): string {
+  if (path !== '/') return '';
+  return `<link rel="preload" as="image" href="${SEO.heroImage}" fetchpriority="high">`;
 }
 
 /**

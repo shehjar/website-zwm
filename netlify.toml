@@ -10,3 +10,19 @@
   NODE_VERSION = "20"
 
 # SPA fallback is handled by public/_redirects (copied into dist/).
+
+# Vite emits content-hashed filenames under /assets/ — they can be cached
+# forever (a content change produces a new filename). Everything else
+# (HTML, images, PDF) keeps Netlify's default revalidation.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"

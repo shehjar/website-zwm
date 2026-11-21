@@ -11,17 +11,24 @@ export interface PageHeaderProps {
   /** Optional photo — switches to the hero layout (homepage): photo bleeds to the right edge with a wavy, fading left contour */
   imageSrc?: string;
   imageAlt?: string;
+  /** Intrinsic pixel dimensions of the hero photo (CLS safety) */
+  imageWidth?: number;
+  imageHeight?: number;
   className?: string;
 }
 
 function HeroFadeImage({
   src,
   alt,
-  aspectRatio
+  aspectRatio,
+  width,
+  height
 }: {
   src: string;
   alt: string;
   aspectRatio: string;
+  width?: number;
+  height?: number;
 }) {
   return (
     <div
@@ -30,6 +37,11 @@ function HeroFadeImage({
       <img
         src={src}
         alt={alt}
+        width={width}
+        height={height}
+        // React 18 does not know the camelCase fetchPriority prop yet —
+        // the lowercase attribute is passed through to the DOM as-is.
+        {...{ fetchpriority: 'high' }}
         className="h-full w-full object-cover"
         style={{
           WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 55%)',
@@ -46,6 +58,8 @@ export function PageHeader({
   ctaHref = '/kontakt',
   imageSrc,
   imageAlt = '',
+  imageWidth,
+  imageHeight,
   className = ''
 }: PageHeaderProps) {
   const isHero = Boolean(imageSrc);
@@ -56,7 +70,7 @@ export function PageHeader({
       {/* Desktop hero photo — starts right below the menu, flush with the right viewport edge, long fade on the left */}
       {isHero && imageSrc &&
       <div className="absolute right-0 top-0 hidden w-[56%] max-w-[760px] lg:block">
-          <HeroFadeImage src={imageSrc} alt={imageAlt} aspectRatio="7 / 5" />
+          <HeroFadeImage src={imageSrc} alt={imageAlt} aspectRatio="7 / 5" width={imageWidth} height={imageHeight} />
         </div>
       }
 
@@ -86,7 +100,7 @@ export function PageHeader({
         {/* Mobile / tablet hero photo — stacked below the lettering */}
         {isHero && imageSrc &&
         <div className="relative mx-auto w-full max-w-xl lg:hidden">
-            <HeroFadeImage src={imageSrc} alt={imageAlt} aspectRatio="4 / 3" />
+            <HeroFadeImage src={imageSrc} alt={imageAlt} aspectRatio="4 / 3" width={imageWidth} height={imageHeight} />
           </div>
         }
       </div>

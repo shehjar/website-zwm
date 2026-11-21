@@ -26,6 +26,9 @@ export const SEO = {
   domain: 'https://zumwohlmobil.de',
   /** Share image (root-relative); made absolute for OG/Twitter. */
   ogImage: '/First_page.jpeg',
+  /** Hero photo (root-relative) — preloaded on the home route for LCP.
+      WebP for display; the JPEG above stays for social share previews. */
+  heroImage: '/First_page.webp',
   logo: '/Logo.svg',
 
   /**

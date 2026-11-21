@@ -16,12 +16,23 @@ function seoTokensDevPlugin(): Plugin {
     name: 'seo-tokens-dev',
     apply: 'serve',
     transformIndexHtml(html) {
-      return applySeoTokens(html, {
-        title: home.title,
-        description: home.description,
-        canonical: `${SEO.domain}/`,
-        ogImage: `${SEO.domain}${SEO.ogImage}`
-      });
+      return {
+        html: applySeoTokens(html, {
+          title: home.title,
+          description: home.description,
+          canonical: `${SEO.domain}/`,
+          ogImage: `${SEO.domain}${SEO.ogImage}`
+        }),
+        // Mirror the home-route LCP preload that prerender.mjs injects in
+        // production builds (dev serves the home page for all routes).
+        tags: [
+          {
+            tag: 'link',
+            attrs: { rel: 'preload', as: 'image', href: SEO.heroImage, fetchpriority: 'high' },
+            injectTo: 'head'
+          }
+        ]
+      };
     }
   };
 }
