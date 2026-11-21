@@ -75,9 +75,12 @@ that renders on the site is never translated to English.
 - Legal pages status (since 2026-10-25): **Datenschutzerklärung is LIVE**
   (final eRecht24 text, owner-provided, published with corrections: Netlify
   clause instead of Webflow, Kontaktformular/FormSubmit section added,
-  analytics teaser removed, Google-Fonts section added). **Impressum =
-  partial draft** (identity data filled from the Datenschutz; USt-IdNr still
-  TODO; awaits final eRecht24 text). **AGB = placeholder**. Swap remaining
+  analytics teaser removed, Google-Fonts section added). **Impressum is
+  LIVE** (final eRecht24 text, owner-provided, published 2026-11-21 with
+  owner-approved corrections: § 19 UStG note kept instead of the generator's
+  placeholder USt-IdNr — Claire has no VAT ID; phone confirmed as
+  0177 4471833, displayed +49 (0) 177 4471833; Telefax line dropped; e-mail
+  double-dot typo fixed). **AGB = placeholder**. Swap remaining
   texts 1:1 when the owner provides them and remove `PlaceholderNotice` from
   each page that becomes final.
 - When self-hosting the fonts (backlog), DELETE the Google-Fonts section
@@ -192,7 +195,7 @@ that renders on the site is never translated to English.
 - Google Search Console einrichten + Sitemap einreichen; Google Business
   Profile anlegen (siehe SEO & AEO, Owner to-dos).
 - Cookie-less analytics (Plausible/Umami) + privacy-policy line.
-- Content: final eRecht24 Impressum + AGB texts (Datenschutz already live);
+- Content: final eRecht24 AGB text (Datenschutz + Impressum already live);
   real testimonials (then flip the flag).
 
 ## Done in the 2026-11-21 perf/best-practices pass (for reference)

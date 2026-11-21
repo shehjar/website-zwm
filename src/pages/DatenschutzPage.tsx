@@ -168,7 +168,7 @@ export function DatenschutzPage() {
           90419 Nürnberg
         </p>
         <p>
-          Telefon: 01774471833
+          Telefon: +49 (0) 177 4471833
           <br />
           E-Mail:{' '}
           <a href="mailto:zumwohlmobil@gmail.com">zumwohlmobil@gmail.com</a>
