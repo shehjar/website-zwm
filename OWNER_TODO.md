@@ -80,6 +80,15 @@ you start, the better.**
 
 ## ✅ Done
 
+- [x] 2026-11-21 — New price list **live on zumwohlmobil.de** (PR #10,
+      squash-merged as 86e22d6, Netlify production deploy verified):
+      download serves the new 2-page `Preisliste.pdf` (235 KB,
+      Ghostscript-compressed Canva export); old PDF URL 301-redirects
+      to it. Pricing section now shows „Weitere Dekoelemente"
+      (Regalleiter 20 €, Obstkisten 15 € im 3er-Set, Palette 10 € mit
+      Beschriftung) and the wagon-only note (120 €, Deko +30 €); new
+      FAQ entry in UI + FAQPage JSON-LD. All prices unchanged. Open
+      owner tasks above: fix the two Canva typos + provide decor photos.
 - [x] 2026-11-15 — Language policy live (PR #8, merged as 7757068):
       visitor-facing content stays German, all dev artifacts (docs,
       comments, commits, OWNER_TODO) are English. Rule is permanent in
