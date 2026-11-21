@@ -32,7 +32,10 @@ rental business ("Zum Wohl Mobil", Claire & Haider).
   and typographic quotes consistent with existing text. See Language policy.
 - Design tokens are CSS variables (`src/index.css`); Tailwind theme maps onto
   them (`tailwind.config.js`). Do not hardcode palette colors in components
-  except where existing components already do (PillButton).
+  except where existing components already do (PillButton). The mobile-menu
+  palette uses RGB-channel vars (`--menu-*`) mapped via
+  `rgb(var(--menu-*) / <alpha-value>)` so opacity modifiers (`text-menu-text/70`)
+  work — follow that pattern for any new token that needs alpha.
 - Components: small, single-purpose, JSDoc on props; `twMerge` for class
   merging; lucide-react for icons.
 - Responsive rule: interactive elements must wrap or shrink at narrow
@@ -160,22 +163,44 @@ that renders on the site is never translated to English.
 
 ## Performance guardrails
 
-- `public/` is ~6 MB after the 2026-10 cleanup (was 31 MB). Keep it small.
+- `public/` is ~3.7 MB after the 2026-11 perf pass (was ~6 MB). Keep it small.
 - Decoration artwork is alpha-WebP at ≤2× display size; never re-introduce
   multi-MB SVGs or unreferenced images. Compress new images and size them to
   their display dimensions (≤2×), prefer WebP.
+- Fonts are SELF-HOSTED (`public/fonts/`, latin + latin-ext woff2; Jost is one
+  variable file). No Google-Fonts CDN call — the Datenschutz "Plugins und
+  Tools" section was removed accordingly. Critical faces are preloaded in
+  `index.html`. To add a weight/style, download the woff2 and add an
+  `@font-face` block in `src/index.css` (keep the `unicode-range`).
+- Photos: hero + carousel are WebP; carousel thumbnails live in
+  `public/carousel-images/thumbs/` (referenced via `thumbSrc`). The hero JPEG
+  `First_page.jpeg` is kept ONLY for `og:image` (social previews prefer JPEG).
+- framer-motion: use `m` (not `motion`) under the `LazyMotion strict` +
+  `MotionConfig reducedMotion="user"` wrapper in `src/routes.tsx`. Simple
+  entrance fades should be CSS keyframes (see `card-in`), not framer — CSS
+  stays visible in prerendered HTML without JS. Honor `prefers-reduced-motion`
+  (global CSS guard + MotionConfig already cover this).
 - Local Node is 18; some dev deps warn (EBADENGINE) but build fine. Netlify
   builds with Node 20 via `.nvmrc`/`netlify.toml`.
 
 ## Owner-approved backlog (unprioritized, pick one at a time)
 
-- Self-host Google Fonts (removes CDN call + Datenschutzerklärung item).
 - Real 1200×630 share image for OG/Twitter (meta tags themselves are live;
   currently the portrait hero `First_page.jpeg` is used as `og:image` —
   crops awkwardly in some share previews).
 - Google Search Console einrichten + Sitemap einreichen; Google Business
   Profile anlegen (siehe SEO & AEO, Owner to-dos).
 - Cookie-less analytics (Plausible/Umami) + privacy-policy line.
-- Perf polish: width/height attrs on images (CLS), hero preload (LCP).
 - Content: final eRecht24 Impressum + AGB texts (Datenschutz already live);
   real testimonials (then flip the flag).
+
+## Done in the 2026-11-21 perf/best-practices pass (for reference)
+
+- Self-hosted fonts (removed Google-Fonts CDN + Datenschutz section 5).
+- Hero/carousel → WebP, carousel thumbnails, deleted ~1.15 MB unreferenced PNGs.
+- Hero LCP preload (home only) + `fetchpriority`; width/height on hero/carousel.
+- framer-motion → `LazyMotion`/`m`; RecipeCard fade → CSS (visible without JS).
+- `prefers-reduced-motion` support; Netlify immutable cache + security headers.
+- Form honeypot (`_honey`); footer year hydration fix; stable `useActiveSection`
+  ids; pure carousel scroll updater; mobile-menu palette → CSS tokens; branded
+  `404.html`; sitemap `lastmod` from git; German error copy in TornEdgeImage.
