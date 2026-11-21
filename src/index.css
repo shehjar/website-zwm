@@ -1,4 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=Allura&family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Bebas+Neue&display=swap');
+/* Self-hosted fonts (public/fonts/) — no third-party CDN calls.
+   Sources: Google Fonts (Allura, Jost, Bebas Neue), latin + latin-ext
+   subsets. Jost is the variable font (weights 300–700 in one file).
+   Preloads for the two critical faces live in index.html. */
+@font-face {
+  font-family: 'Allura';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/allura-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Allura';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/allura-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('/fonts/jost-var-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('/fonts/jost-var-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Bebas Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/bebas-neue-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Bebas Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/bebas-neue-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
 
 @tailwind base;
 @tailwind components;
@@ -22,6 +73,16 @@
   --shadow-md: 0 2px 8px rgba(31, 41, 24, 0.06);
   /* Single dial for background decoration strength (0-1); PageBackdrop multiplies every piece by this */
   --decoration-strength: 1;
+  /* Mobile menu overlay palette — darker greens than the page tokens.
+     Stored as RGB channels so Tailwind opacity modifiers (text-menu-text/70)
+     work via `rgb(var(--menu-*) / <alpha-value>)` in tailwind.config.js. */
+  --menu-bg: 238 242 235;
+  --menu-text: 47 59 51;
+  --menu-accent: 94 122 99;
+  --menu-hover: 227 234 223;
+  --menu-close-hover: 221 230 216;
+  --menu-border: 221 230 216;
+  --menu-offset: 244 246 241;
 }
 
 body {
@@ -42,6 +103,32 @@ h4,
 h5,
 h6 {
   font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Entrance animation for RecipeCard — CSS-only so prerendered cards are
+   visible without JS (framer-motion used to bake opacity:0 into the SSG HTML). */
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Respect the OS-level reduced-motion preference everywhere:
+   framer-motion is covered by MotionConfig reducedMotion="user". */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Legal pages (Impressum / Datenschutz / AGB) */

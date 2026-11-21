@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/Logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#FAF8F4" />
+    <!-- Critical self-hosted fonts: body text (Jost) + hero script (Allura).
+        crossorigin is required for font preloads even same-origin. -->
+    <link rel="preload" href="/fonts/jost-var-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/allura-latin.woff2" as="font" type="font/woff2" crossorigin />
     <!-- The JSON-LD (LocalBusiness, WebSite, FAQPage) is injected here at
          prerender time; values come exclusively from src/seo.ts. -->
     <!--app-head-->

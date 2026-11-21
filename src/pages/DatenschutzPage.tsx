@@ -9,9 +9,10 @@ import { LegalPage } from './LegalPage';
  *     mandatory checkbox in the form as the legal basis).
  *  3) "Analytics tools" announcement paragraph removed (no analytics
  *     tools are in use).
- * Additionally: Google Fonts section (fonts are currently loaded from the
- * Google CDN). IMPORTANT: REMOVE that section (section 5) as soon as the
- * fonts are self-hosted (backlog, see AGENTS.md).
+ * Fonts are self-hosted (public/fonts/) since 2026-11-21 — the former
+ * "5. Plugins und Tools / Google Fonts" section was removed in the same
+ * change, per the release rule in AGENTS.md. No third-party font CDN is
+ * contacted anymore.
  * The eRecht24 attribution at the end stays for licensing reasons.
  */
 export function DatenschutzPage() {
@@ -396,47 +397,6 @@ export function DatenschutzPage() {
           Datenspeicherung entfällt (z. B. nach abgeschlossener Bearbeitung
           Ihres Anliegens). Zwingende gesetzliche Bestimmungen – insbesondere
           gesetzliche Aufbewahrungsfristen – bleiben unberührt.
-        </p>
-      </section>
-
-      {/* WICHTIG: Diesen Abschnitt entfernen, sobald die Fonts selbst
-          gehostet werden (Backlog in AGENTS.md). */}
-      <section>
-        <h2>5. Plugins und Tools</h2>
-        <h3>Google Fonts</h3>
-        <p>
-          Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten so
-          genannte Google Fonts, die von Google bereitgestellt werden. Beim
-          Aufruf einer Seite lädt Ihr Browser die benötigten Fonts in den
-          Browsercache, um Texte und Schriftarten korrekt anzuzeigen. Zu
-          diesem Zweck muss der von Ihnen verwendete Browser Verbindung zu den
-          Servern von Google aufnehmen. Hierdurch erlangt Google Kenntnis
-          darüber, dass über Ihre IP-Adresse diese Website aufgerufen wurde.
-        </p>
-        <p>
-          Anbieter ist die Google Ireland Limited („Google“), Gordon House,
-          Barrow Street, Dublin 4, Irland; Mutterunternehmen ist die Google
-          LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA. Die
-          Nutzung von Google Fonts erfolgt auf Grundlage von Art. 6 Abs. 1
-          lit. f DSGVO; der Websitebetreiber hat ein berechtigtes Interesse an
-          der einheitlichen Darstellung des Schriftbilds. Sofern eine
-          entsprechende Einwilligung abgefragt wurde, erfolgt die Verarbeitung
-          ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO und § 25
-          Abs. 1 TDDDG, soweit die Einwilligung die Speicherung von Cookies
-          oder den Zugriff auf Informationen im Endgerät des Nutzers (z. B.
-          Device-Fingerprinting) im Sinne des TDDDG umfasst. Die Einwilligung
-          ist jederzeit widerrufbar.
-        </p>
-        <p>
-          Die Datenübertragung in die USA wird auf die
-          Standardvertragsklauseln der EU-Kommission gestützt; Google verfügt
-          zudem über eine Zertifizierung nach dem „EU-US Data Privacy
-          Framework“ (DPF). Weitere Informationen zu Google Fonts finden Sie
-          in der Datenschutzerklärung von Google:{' '}
-          <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener noreferrer">
-            https://policies.google.com/privacy?hl=de
-          </a>
-          .
         </p>
       </section>
 
