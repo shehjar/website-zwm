@@ -20,6 +20,7 @@
  * duplicated here.
  */
 import { build } from 'vite';
+import { execSync } from 'node:child_process';
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -58,9 +59,10 @@ for (const path of server.ROUTE_PATHS) {
   const appHtml = server.renderRoute(path);
   const seo = server.getRouteSeo(path);
   const jsonLd = server.getJsonLdScript(path) ?? '';
+  const headLinks = server.getHeadLinks(path);
 
   let html = template.replace('<!--app-html-->', appHtml);
-  html = html.replace('<!--app-head-->', jsonLd);
+  html = html.replace('<!--app-head-->', headLinks + jsonLd);
   html = applySeoTokens(html, seo);
 
   const outFile =
@@ -76,7 +78,16 @@ for (const path of server.ROUTE_PATHS) {
 }
 
 // 4. Generate the sitemap + clean up the SSR build.
-await writeFile(resolve(distDir, 'sitemap.xml'), server.buildSitemapXml());
+// lastmod = last commit date (content change), not the build date — every
+// deploy would otherwise bump lastmod without any content change. Falls
+// back to today outside a git checkout (buildSitemapXml default).
+let lastmod;
+try {
+  lastmod = execSync('git log -1 --format=%cs', { cwd: root }).toString().trim();
+} catch {
+  // not a git repository — keep the default
+}
+await writeFile(resolve(distDir, 'sitemap.xml'), server.buildSitemapXml(lastmod));
 console.log('prerender: wrote sitemap.xml');
 await rm(resolve(root, 'dist-server'), { recursive: true, force: true });
 console.log('prerender: done.');

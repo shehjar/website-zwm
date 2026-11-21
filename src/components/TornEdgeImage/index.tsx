@@ -99,10 +99,10 @@ export function TornEdgeImage({
           {status === 'error' ?
           <div
             role="img"
-            aria-label={alt || 'Image unavailable'}
+            aria-label={alt || 'Bild nicht verfügbar'}
             className="flex h-full w-full items-center justify-center bg-stone-200 text-sm text-stone-500">
             
-              Image unavailable
+              Bild konnte nicht geladen werden
             </div> :
 
           <img

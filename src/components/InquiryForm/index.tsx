@@ -30,6 +30,8 @@ export type InquiryFormValues = {
   guests: string;
   message: string;
   consent: boolean;
+  /** Honeypot — hidden from humans; bots that fill it get silently dropped by FormSubmit. */
+  honey: string;
 };
 
 type FieldKey = keyof InquiryFormValues;
@@ -65,7 +67,8 @@ const EMPTY: InquiryFormValues = {
   location: '',
   guests: '',
   message: '',
-  consent: false
+  consent: false,
+  honey: ''
 };
 
 const FIELD_ORDER: FieldKey[] = ['name', 'phone', 'email', 'date', 'eventType', 'location', 'guests', 'consent'];
@@ -184,6 +187,17 @@ export function InquiryForm({
       </header>
 
       <form ref={formRef} noValidate onSubmit={handleSubmit} className="flex flex-col gap-6">
+        {/* Honeypot: invisible to humans, tempting to bots. FormSubmit drops
+            submissions where _honey is filled. Never label or focus it. */}
+        <input
+          type="text"
+          name="_honey"
+          value={values.honey}
+          onChange={(e) => set('honey', e.target.value)}
+          className="hidden"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true" />
         <fieldset disabled={sending} className="contents">
           <legend className="sr-only">Kontaktdaten</legend>
           <PillInput
@@ -370,6 +384,7 @@ export async function sendViaFormSubmit(values: InquiryFormValues, recipient: st
       _replyto: values.email,
       _template: 'table',
       _captcha: 'false',
+      _honey: values.honey,
       Name: values.name,
       Telefonnummer: values.phone || '–',
       'E-Mail-Adresse': values.email,

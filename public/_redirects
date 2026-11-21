@@ -1,2 +1,5 @@
 /Preisliste_fur_PDF.pdf    /Preisliste.pdf    301
-/*    /index.html   200
+# All routes are prerendered flat files, so this catch-all only hits true
+# misses (existing files are served first). Serve the branded 404 with a
+# real 404 status — a 200 fallback to / would be a soft 404 for crawlers.
+/*    /404.html   404

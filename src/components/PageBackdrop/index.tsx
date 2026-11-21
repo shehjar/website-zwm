@@ -61,7 +61,12 @@ function decorationStrength(): number {
 }
 
 export function PageBackdrop({ className = '' }: PageBackdropProps) {
-  const strength = React.useMemo(decorationStrength, []);
+  // Read the CSS dial after mount, not during render: DOM reads belong in
+  // effects, and the server render must not depend on window (SSG/hydration).
+  const [strength, setStrength] = React.useState(1);
+  React.useEffect(() => {
+    setStrength(decorationStrength());
+  }, []);
   return (
     <div
       aria-hidden="true"

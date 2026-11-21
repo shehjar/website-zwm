@@ -71,7 +71,13 @@ export function InstagramSection({
               className={`block aspect-square w-full overflow-hidden rounded-xl bg-wash transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
               i === active ? 'ring-2 ring-primary ring-offset-2 ring-offset-background' : 'opacity-70 hover:opacity-100'}`}>
 
-                    <img src={img.src} alt="" loading="lazy" className="h-full w-full object-cover" />
+                    <img
+                      src={img.thumbSrc ?? img.src}
+                      alt=""
+                      width={240}
+                      height={240}
+                      loading="lazy"
+                      className="h-full w-full object-cover" />
                   </button>
                 </li>
           )}
