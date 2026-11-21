@@ -88,6 +88,16 @@ you start, the better.**
 
 ## ✅ Done
 
+- [x] 2026-11-21 — **Final AGB live on zumwohlmobil.de** (PR #14,
+      squash-merged as a2eeb27, Netlify production deploy verified):
+      owner-provided PDF terms published as HTML (14 sections) with
+      owner-approved corrections — §10 liability sentence fixed (the
+      draft made the customer liable for Zum Wohl Mobil's own damages),
+      §3 typo fixed; §12 kept as-is. No PDF download (source PDF has an
+      outdated phone number); public/AGB.pdf stays untracked as a local
+      source. PlaceholderNotice removed — **all three legal pages are
+      now final**. Open owner task: re-export a corrected AGB PDF if a
+      download link is wanted later.
 - [x] 2026-11-21 — **Final Impressum live on zumwohlmobil.de** (PR #13,
       squash-merged as 5c00bc5, Netlify production deploy verified):
       owner-provided eRecht24 text published with owner-approved
