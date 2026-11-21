@@ -108,7 +108,7 @@ export const ROUTE_SEO: RouteSeo[] = [
     path: '/agb',
     title: 'AGB – Zum Wohl Mobil',
     description:
-      'Allgemeine Geschäftsbedingungen von Zum Wohl Mobil, der mobilen Aperol Spritz Bar aus Nürnberg.'
+      'Allgemeine Geschäfts- und Buchungsbedingungen von Zum Wohl Mobil, der mobilen Aperol Spritz Bar aus Nürnberg.'
   }
 ];
 

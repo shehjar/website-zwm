@@ -80,9 +80,12 @@ that renders on the site is never translated to English.
   owner-approved corrections: § 19 UStG note kept instead of the generator's
   placeholder USt-IdNr — Claire has no VAT ID; phone confirmed as
   0177 4471833, displayed +49 (0) 177 4471833; Telefax line dropped; e-mail
-  double-dot typo fixed). **AGB = placeholder**. Swap remaining
-  texts 1:1 when the owner provides them and remove `PlaceholderNotice` from
-  each page that becomes final.
+  double-dot typo fixed). **AGB is LIVE** (owner-provided PDF text,
+  published 2026-11-21 with owner-approved corrections: §10 liability
+  wording fixed — the draft made the customer liable for the provider's
+  own damages; §3 typo fixed. HTML-only, no PDF download: the source PDF
+  contains an outdated phone number). All legal pages are final;
+  `PlaceholderNotice` was removed from `LegalPage.tsx`.
 - When self-hosting the fonts (backlog), DELETE the Google-Fonts section
   (section 5) in `src/pages/DatenschutzPage.tsx` in the same change.
 - No new third-party CDNs/scripts (fonts, analytics, embeds, hotlinked images)
@@ -195,8 +198,8 @@ that renders on the site is never translated to English.
 - Google Search Console einrichten + Sitemap einreichen; Google Business
   Profile anlegen (siehe SEO & AEO, Owner to-dos).
 - Cookie-less analytics (Plausible/Umami) + privacy-policy line.
-- Content: final eRecht24 AGB text (Datenschutz + Impressum already live);
-  real testimonials (then flip the flag).
+- Content: real testimonials (then flip the flag); all legal texts
+  (Datenschutz, Impressum, AGB) are live.
 
 ## Done in the 2026-11-21 perf/best-practices pass (for reference)
 

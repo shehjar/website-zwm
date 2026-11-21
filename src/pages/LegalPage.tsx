@@ -18,16 +18,6 @@ export interface LegalPageProps {
   children: React.ReactNode;
 }
 
-/** Yellow-ish notice shown while the legal texts are still placeholders. */
-export function PlaceholderNotice() {
-  return (
-    <p className="mb-8 rounded-2xl border border-accent/40 bg-wash px-5 py-4 text-sm leading-relaxed text-text">
-      <strong>Hinweis:</strong> Diese Seite enthält derzeit einen Platzhaltertext.
-      Der endgültige Rechtstext wird vor der Veröffentlichung eingesetzt.
-    </p>
-  );
-}
-
 export function LegalPage({ title, subtitle, children }: LegalPageProps) {
   React.useEffect(() => {
     document.title = `${title} – Zum Wohl Mobil`;
